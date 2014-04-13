@@ -1,4 +1,8 @@
-1】vim-powerline乱码解决方法
+0】source setup.sh : create a link for .vimrc
+
+1】install plugin powerline
+
+vim-powerline乱码解决方法
 Linux下
 
 cd ~/.fonts
