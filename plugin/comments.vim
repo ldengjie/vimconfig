@@ -173,7 +173,6 @@ function! UnCommentLine()
 
   " for .cpp .cc .h or .hpp or .java or .C files use //
   if file_name =~ '\.cpp$' ||file_name =~ '\.h$' ||file_name =~ '\.cc$'  ||file_name =~ '\.hpp$' || file_name =~ '\.java$' || file_name =~ '\.php[2345]\?$' || file_name =~ '\.C$'
-<<<<<<< HEAD
     execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>==\<down>"
   " for .ml or .mli
   elseif file_name =~ '\.ml$' || file_name =~ '\.mli$'
@@ -198,38 +197,11 @@ function! UnCommentLine()
   " for .tex use %
   elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
     execute ":silent! normal :nohlsearch\<CR>:s/%/\<CR>:nohlsearch\<CR>\<down>"
-=======
-    execute ":silent! normal :nohlsearch\<CR>:s/\\/\\///\<CR>:nohlsearch\<CR>=="
-  " for .ml or .mli
-  elseif file_name =~ '\.ml$' || file_name =~ '\.mli$'
-    execute ":silent! normal :nohlsearch\<CR>:s/(\\*//\<CR>:nohlsearch\<CR>"
-	execute ":silent! normal :nohlsearch\<CR>:s/\\*)//\<CR>:nohlsearch\<CR>=="
-  " for .c or .h or .pc or .css files use /* */
-  elseif file_name =~ '\.c$' || file_name =~ '\.pc$' || file_name =~ '\.css$' || file_name =~ '\.js$'
-    execute ":silent! normal :nohlsearch\<CR>:s/\\/\\*//\<CR>:s/\\*\\///\<CR>:nohlsearch\<CR>=="
-  " for .vim files use "
-  elseif file_name =~ '\.vim$' || file_name =~ '\.vimrc$'
-    execute ":silent! normal :nohlsearch\<CR>:s/\\\"//\<CR>:nohlsearch\<CR>"
-  " for .sql files use --
-  elseif file_name =~ '\.sql$'
-    execute ":silent! normal :nohlsearch\<CR>:s/\\-\\-//\<CR>:nohlsearch\<CR>"
-  " for .ksh or .sh or .csh or .pl or .pm files use #
-  elseif file_name =~ '\.[kc]\?sh$' || file_name =~ '\.pl$' || file_name =~ '\.pm$'
-    execute ":silent! normal :nohlsearch\<CR>:s/\\#//\<CR>:nohlsearch\<CR>"
-  " for .xml .html .xhtml .htm use <!-- -->
-  elseif file_name =~ '\.html$' || file_name =~ '\.htm$' || file_name =~ '\.xml$' || file_name =~ '\.xhtml$' 
-    execute ":silent! normal :nohlsearch\<CR>:s/<!--//\<CR>=="
-    execute ":silent! normal :nohlsearch\<CR>:s/-->//\<CR>=="
-  " for .tex use %
-  elseif file_name =~ '\.tex$' || file_name =~ '\.nw$'
-    execute ":silent! normal :nohlsearch\<CR>:s/%/\<CR>:nohlsearch\<CR>"
->>>>>>> af68b420f58e124c0a3f024bc608295efafaf67a
   " for fortran 77 files use C on first column 
   elseif file_name =~ '\.f$' || file_name =~ '\.F$'
     execute ":silent! normal ^x\<ESC>\<down>^"
   " for fortran 90/95 files use !
   elseif file_name =~ '\.f90$' || file_name =~ '\.F90$' || file_name =~ '\.f95$' || file_name =~ '\.F95$'
-<<<<<<< HEAD
     execute ":silent! normal :nohlsearch\<CR>:s/!//\<CR>:nohlsearch\<CR>\<down>"
   " for VHDL and Haskell files use --
   elseif file_name =~ '\.vhd$' || file_name =~ '\.vhdl$' || file_name =~ '\.hs$'
@@ -237,15 +209,6 @@ function! UnCommentLine()
   " for all other files use # 
   else
     execute ":silent! normal :nohlsearch\<CR>:s/\\#//\<CR>:nohlsearch\<CR>\<down>"
-=======
-    execute ":silent! normal :nohlsearch\<CR>:s/!//\<CR>:nohlsearch\<CR>"
-  " for VHDL and Haskell files use --
-  elseif file_name =~ '\.vhd$' || file_name =~ '\.vhdl$' || file_name =~ '\.hs$'
-    execute ":silent! normal :nohlsearch\<CR>:s/-- //\<CR>:nohlsearch\<CR>"
-  " for all other files use # 
-  else
-    execute ":silent! normal :nohlsearch\<CR>:s/\\#//\<CR>:nohlsearch\<CR>"
->>>>>>> af68b420f58e124c0a3f024bc608295efafaf67a
   endif
 endfunction
 
@@ -254,11 +217,7 @@ function! RangeCommentLine()
   let file_name = buffer_name("%")
 
   " for .cpp or .hpp or .java or .C files use //
-<<<<<<< HEAD
   if file_name =~ '\.cpp$' || file_name =~ '\.cc$'  || file_name =~ '\.h$'|| file_name =~ '\.hpp$' || file_name =~ '\.java$' || file_name =~ '\.php[2345]\?$' || file_name =~ '\.C$'
-=======
-  if file_name =~ '\.cpp$' || file_name =~ '\.hpp$' || file_name =~ '\.java$' || file_name =~ '\.php[2345]\?$' || file_name =~ '\.C$'
->>>>>>> af68b420f58e124c0a3f024bc608295efafaf67a
     execute ":silent! normal :s/\\S/\\/\\/\\0/\<CR>:nohlsearch<CR>=="
   " for .c or .h or .pc or .css files use /* */
   elseif file_name =~ '\.c$' || file_name =~ '\.h$' || file_name =~ '\.pc$' || file_name =~ '\.css$' || file_name =~ '\.js$'
@@ -323,11 +282,7 @@ function! RangeUnCommentLine()
   let file_name = buffer_name("%")
 
   " for .cpp or .hpp or .java files use //
-<<<<<<< HEAD
   if file_name =~ '\.cpp$' || file_name =~ '\.cc$'  || file_name =~ '\.h$'|| file_name =~ '\.hpp$' || file_name =~ '\.java$' || file_name =~ '\.php[2345]\?$' || file_name =~ '\.C$'
-=======
-  if file_name =~ '\.cpp$' || file_name =~ '\.hpp$' || file_name =~ '\.java$' || file_name =~ '\.php[2345]\?$' || file_name =~ '\.C$'
->>>>>>> af68b420f58e124c0a3f024bc608295efafaf67a
     execute ":silent! normal :s/\\/\\///\<CR>:nohlsearch\<CR>=="
   " for .c or .h or .pc or .css files use /* */
   elseif file_name =~ '\.c$' || file_name =~ '\.h$' || file_name =~ '\.pc$' || file_name =~ '\.css$' || file_name =~ '\.js$'
@@ -360,11 +315,7 @@ function! RangeUnCommentLine()
   " for VHDL and Haskell files use --
   elseif file_name =~ '\.vhd$' || file_name =~ '\.vhdl$' || file_name =~ '\.hs$'
     execute ":silent! normal :s/-- //\<CR>:nohlsearch\<CR>"
-<<<<<<< HEAD
-j
-=======
   " for all other files use # 
->>>>>>> af68b420f58e124c0a3f024bc608295efafaf67a
   else
     execute ":silent! normal :s/\\#//\<CR>:nohlsearch\<CR>"
   endif
