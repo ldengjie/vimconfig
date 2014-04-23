@@ -259,7 +259,7 @@ let g:template['cpp'] = g:template['c']
 " ---------------------------------------------
 " common templates
 let g:template['_'] = {}
-let g:template['_']['xt'] = "\<c-r>=strftime(\"%Y-%m-%d %H:%M:%S\")\<cr>"
+"let g:template['_']['xt'] = "\<c-r>=strftime(\"%Y-%m-%d %H:%M:%S\")\<cr>"
 
 " ---------------------------------------------
 " load user defined snippets

@@ -58,6 +58,8 @@ hi Comment ctermfg=6
 "高亮显示搜索结果
 set hlsearch
 hi Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
+"visual mode color
+hi Visual cterm=bold ctermfg=236 ctermbg=252 gui=bold guifg=#303030 guibg=#d0d0d0
 " 不能用backspace键删除
 set backspace=indent,eol,start
 "输入时，显示匹配的括号
@@ -68,7 +70,8 @@ set scrolloff=3
 "关闭vim声音错误提示
 set vb t_vb=
 "nmap <leader>w :w<CR>
-nmap <leader>e :tabe<Space>
+nmap <leader>t :tabe<Space>
+map <Leader>d <plug>NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
 
