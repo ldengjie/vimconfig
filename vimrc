@@ -71,6 +71,7 @@ set scrolloff=3
 set vb t_vb=
 "nmap <leader>w :w<CR>
 nmap <leader>t :tabe<Space>
+nmap <leader>m :MarksBrowser<CR>
 map <Leader>d <plug>NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
