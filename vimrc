@@ -76,15 +76,16 @@ map <Leader>d <plug>NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
 
+"\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
 "make,make with makeprg
 "nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
 map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
             \:for d in getqflist() <Bar>
-            \if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
+            \if !empty((d.text)) <Bar>
             \copen <Bar>
             \break <Bar> 
             \endif <Bar>
-            \endfor<CR>
+            \endfor<CR><CR>
 function Do_OneFileMake()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -129,11 +130,111 @@ endfunction
 "进行make的设置,make with Makefile
 map <F6> :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>
             \:for d in getqflist() <Bar>
-            \if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
+            \if !empty((d.text)) <Bar>
             \copen <Bar>
             \break <Bar> 
             \endif <Bar>
-            \endfor<CR>
+            \endfor<CR><CR>
 function Do_make()
     set makeprg=make
+endfunction
+" with makeprg
+"nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
+map <F7> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>
+            \: let isDone=1<Bar>
+            \for d in getqflist() <Bar>
+            \if !empty((d.text)) <Bar>
+            \copen <Bar>
+            \let isDone=0 <Bar>
+            \break <Bar> 
+            \endif <Bar>
+            \endfor<Bar> if isDone==1 <Bar> echo 'make is DONE successfully!'<Bar>endif<CR><CR>
+function Do_OneFileMake_RooFit()
+    if expand("%:p:h")!=getcwd()
+        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
+        return
+    endif
+    let sourcefileename=expand("%:t")
+    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
+    echohl WarningMsg | echo "filetype : "&filetype | echohl None
+    "return
+    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
+        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
+        return
+    endif
+    let deletedspacefilename=substitute(sourcefileename,' ','','g')
+    if strlen(deletedspacefilename)!=strlen(sourcefileename)
+        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
+        return
+    endif
+    if &filetype=="c"
+        set makeprg=gcc\ -o\ %<\ %
+    elseif &filetype=="cpp"
+        set makeprg=g++\ -lm\ -lRooFit\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
+    endif
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    let toexename=outfilename
+    if filereadable(outfilename)
+        let outdeletedsuccess=delete("./".outfilename)
+        if(outdeletedsuccess!=0)
+            set makeprg=make
+            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
+            return
+        endif
+    endif
+    "execute "silent make" "using silent,texts will disappear,should ctrl+l
+    "execute "normal :"
+    "if filereadable(outfilename)
+        "execute "!./".toexename
+    "endif
+endfunction
+map <F8> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>
+            \:for d in getqflist() <Bar>
+            \if !empty((d.text)) <Bar>
+            \copen <Bar>
+            \break <Bar> 
+            \endif <Bar>
+            \endfor<CR><CR>
+function Do_OneFileMake_Root()
+    if expand("%:p:h")!=getcwd()
+        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
+        return
+    endif
+    let sourcefileename=expand("%:t")
+    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
+    echohl WarningMsg | echo "filetype : "&filetype | echohl None
+    "return
+    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
+        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
+        return
+    endif
+    let deletedspacefilename=substitute(sourcefileename,' ','','g')
+    if strlen(deletedspacefilename)!=strlen(sourcefileename)
+        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
+        return
+    endif
+    if &filetype=="c"
+        set makeprg=gcc\ -o\ %<\ %
+    elseif &filetype=="cpp"
+        set makeprg=g++\ -lm\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
+    endif
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    let toexename=outfilename
+    if filereadable(outfilename)
+        let outdeletedsuccess=delete("./".outfilename)
+        if(outdeletedsuccess!=0)
+            set makeprg=make
+            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
+            return
+        endif
+    endif
+    "execute "silent make" "using silent,texts will disappear,should ctrl+l
+    "execute "normal :"
+    "if filereadable(outfilename)
+        "execute "!./".toexename
+    "endif
 endfunction
