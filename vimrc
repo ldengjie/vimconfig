@@ -51,6 +51,19 @@ let g:tagbar_right = 1
 "autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.C call tagbar#autoopen()
 "}
 
+"doxygen toolkit{ 
+"let g:DoxygenToolkit_briefTag_pre="@Synopsis "
+"let g:DoxygenToolkit_paramTag_pre="@Param "
+"let g:DoxygenToolkit_returnTag="@Returns "
+let g:DoxygenToolkit_authorName="ldengjie,lidengjie@ihep.ac.cn"
+""let s:licenseTag = "Copyright(C)\<enter>"
+""let s:licenseTag = s:licenseTag . "For free\<enter>"
+""let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+""let g:DoxygenToolkit_licenseTag = s:licenseTag
+"let g:DoxygenToolkit_briefTag_funcName="yes"
+""let g:doxygen_enhanced_color=1
+"}
+
 "检测file类型，默认On;自动加载该类型相关的插件;自动选择合适的缩进方式
 filetype plugin indent on
 "修改注释颜色
@@ -72,9 +85,12 @@ set vb t_vb=
 "nmap <leader>w :w<CR>
 nmap <leader>t :tabe<Space>
 nmap <leader>m :MarksBrowser<CR>
-map <Leader>d <plug>NERDTreeTabsToggle<CR>
+"map <Leader>d <plug>NERDTreeTabsToggle<CR>
+map <F3> :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
+nnoremap <leader>q :cclose<CR>
+
 
 "\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
 "make,make with makeprg
