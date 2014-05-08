@@ -90,6 +90,7 @@ map <F3> :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
 nnoremap <leader>q :cclose<CR>
+nnoremap <leader>h :AT<CR>
 
 
 "\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
