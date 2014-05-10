@@ -89,6 +89,8 @@ nmap <leader>m :MarksBrowser<CR>
 map <F3> :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
+nnoremap <leader>c :cw 7<CR>
+set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>h :AT<CR>
 
@@ -96,13 +98,7 @@ nnoremap <leader>h :AT<CR>
 "\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
 "make,make with makeprg
 "nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
-map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
-            \:for d in getqflist() <Bar>
-            \if !empty((d.text)) <Bar>
-            \copen <Bar>
-            \break <Bar> 
-            \endif <Bar>
-            \endfor<CR><CR>
+map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -145,27 +141,12 @@ function Do_OneFileMake()
     "endif
 endfunction
 "进行make的设置,make with Makefile
-map <F6> :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>
-            \:for d in getqflist() <Bar>
-            \if !empty((d.text)) <Bar>
-            \copen <Bar>
-            \break <Bar> 
-            \endif <Bar>
-            \endfor<CR><CR>
+map <F6> :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_make()
     set makeprg=make
 endfunction
 " with makeprg
-"nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
-map <F7> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>
-            \: let isDone=1<Bar>
-            \for d in getqflist() <Bar>
-            \if !empty((d.text)) <Bar>
-            \copen <Bar>
-            \let isDone=0 <Bar>
-            \break <Bar> 
-            \endif <Bar>
-            \endfor<Bar> if isDone==1 <Bar> echo 'make is DONE successfully!'<Bar>endif<CR><CR>
+map <F7> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_RooFit()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -207,13 +188,7 @@ function Do_OneFileMake_RooFit()
         "execute "!./".toexename
     "endif
 endfunction
-map <F8> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>
-            \:for d in getqflist() <Bar>
-            \if !empty((d.text)) <Bar>
-            \copen <Bar>
-            \break <Bar> 
-            \endif <Bar>
-            \endfor<CR><CR>
+map <F8> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_Root()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
