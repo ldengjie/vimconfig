@@ -270,6 +270,12 @@ let g:template['html']['td'] ="<td> ".g:rs."...".g:re." </td>\<cr>"
 let g:template['html']['p'] ="<p> ".g:rs."...".g:re." </p>\<cr>" 
 
 " ---------------------------------------------
+" markdown templates
+let g:template['modula2'] = {}
+let g:template['modula2']['la'] = "![](http://latex.codecogs.com/gif.latex?)\<left>"
+let g:template['modula2']['ur'] = "[".g:rs."...".g:re."](".g:rs."...".g:re.")"
+let g:template['modula2']['gr'] = "![".g:rs."...".g:re."](".g:rs."...".g:re.")"
+" ---------------------------------------------
 " common templates
 let g:template['_'] = {}
 "let g:template['_']['xt'] = "\<c-r>=strftime(\"%Y-%m-%d %H:%M:%S\")\<cr>"
