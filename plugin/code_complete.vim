@@ -257,6 +257,12 @@ let g:template['c']['ife'] = "if( ".g:rs."...".g:re." )\<cr>{\<cr>".g:rs."...".g
 let g:template['cpp'] = g:template['c']
 
 " ---------------------------------------------
+" markdown templates
+let g:template['modula2'] = {}
+let g:template['modula2']['la'] = "![](http://latex.codecogs.com/gif.latex?)\<left>"
+let g:template['modula2']['ur'] = "[".g:rs."...".g:re."](".g:rs."...".g:re.")"
+let g:template['modula2']['gr'] = "![".g:rs."...".g:re."](".g:rs."...".g:re.")"
+" ---------------------------------------------
 " common templates
 let g:template['_'] = {}
 "let g:template['_']['xt'] = "\<c-r>=strftime(\"%Y-%m-%d %H:%M:%S\")\<cr>"
