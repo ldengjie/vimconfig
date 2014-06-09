@@ -255,6 +255,19 @@ let g:template['c']['ife'] = "if( ".g:rs."...".g:re." )\<cr>{\<cr>".g:rs."...".g
 " ---------------------------------------------
 " C++ templates
 let g:template['cpp'] = g:template['c']
+" ---------------------------------------------
+
+" ---------------------------------------------
+ "html templates
+let g:template['html'] = {}
+let g:template['html']['he'] ="<head>\<cr>".g:rs."...".g:re."\<cr></head>\<cr>" 
+let g:template['html']['bo'] ="<body>\<cr>".g:rs."...".g:re."\<cr></body>\<cr>" 
+let g:template['html']['ht'] ="<html>\<cr>".g:rs."...".g:re."\<cr></html>\<cr>" 
+let g:template['html']['ti'] ="<title> ".g:rs."...".g:re." </title>\<cr>" 
+let g:template['html']['ta'] ="<table>\<cr>".g:rs."...".g:re."\<cr></table>\<cr>" 
+let g:template['html']['tr'] ="<tr>\<cr>".g:rs."...".g:re."\<cr></tr>\<cr>" 
+let g:template['html']['td'] ="<td> ".g:rs."...".g:re." </td>\<cr>" 
+let g:template['html']['p'] ="<p> ".g:rs."...".g:re." </p>\<cr>" 
 
 " ---------------------------------------------
 " common templates
