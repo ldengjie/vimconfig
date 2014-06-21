@@ -239,7 +239,7 @@ let g:template['c'] = {}
 let g:template['c']['cc'] = "/*  */\<left>\<left>\<left>"
 let g:template['c']['cd'] = "/**<  */\<left>\<left>\<left>"
 let g:template['c']['co0'] = "cout<<\" \"<<endl;\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>"
-let g:template['c']['co'] = "cout<<\"".g:rs."...".g:re."  : \"<<".g:rs."...".g:re."<<endl;\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>\<left>"
+let g:template['c']['co'] = "cout<<\"".g:rs."...".g:re."  : \"<<".g:rs."...".g:re."<<endl;"
 let g:template['c']['re'] = "return true;"
 let g:template['c']['de'] = "#define     "
 let g:template['c']['in'] = "#include  \"\"\<left>"
@@ -251,6 +251,7 @@ let g:template['c']['switch'] = "switch ( ".g:rs."...".g:re." )\<cr>{\<cr>case "
 let g:template['c']['if'] = "if( ".g:rs."...".g:re." )\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
 let g:template['c']['while'] = "while( ".g:rs."...".g:re." )\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
 let g:template['c']['ife'] = "if( ".g:rs."...".g:re." )\<cr>{\<cr>".g:rs."...".g:re."\<cr>} else\<cr>{\<cr>".g:rs."...".g:re."\<cr>}"
+let g:template['c']['k'] = "{\<cr>".g:rs."...".g:re."\<cr>}"
 
 " ---------------------------------------------
 " C++ templates
