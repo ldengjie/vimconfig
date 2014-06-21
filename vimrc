@@ -29,7 +29,7 @@ set clipboard+=unnamed
 call pathogen#infect()
 "Powerline{
 set laststatus=2
-"set guifont=PowerlineSymbols\ for\ Powerline
+set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible 
 set t_Co=256 
 let g:Powerline_symbols = 'fancy'
