@@ -1,3 +1,5 @@
+"光亮光标行
+set cursorline
 set number
 set encoding=utf-8
 set fileencodings=gbk,utf-8
@@ -7,6 +9,7 @@ let mapleader = ","
 "自动关闭时保存折叠，打开时读出折叠
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent loadview
+"set cursorcolumn
 
 set tags+=~/.vim/mytags
 set expandtab
@@ -146,7 +149,7 @@ function Do_make()
     set makeprg=make
 endfunction
 " with makeprg
-map <F7> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+map <F8> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_RooFit()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -188,7 +191,7 @@ function Do_OneFileMake_RooFit()
         "execute "!./".toexename
     "endif
 endfunction
-map <F8> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+map <F7> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_Root()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
