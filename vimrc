@@ -1,11 +1,12 @@
 "光亮光标行
 set cursorline
 "set cursorcolumn
-set number
+set nu
 set encoding=utf-8
-set fileencodings=gbk,utf-8
+set fileencodings=utf-8
 set termencoding=utf-8
 set ambiwidth=double
+set fileformat=unix
 let mapleader = "," 
 "自动关闭时保存折叠，打开时读出折叠
 au BufWinLeave *.* silent mkview
@@ -116,150 +117,13 @@ let g:DoxygenToolkit_authorName="ldengjie,lidengjie@ihep.ac.cn"
 nmap <leader>e :e<CR>
 nmap <leader>t :tabe<Space>
 nmap <leader>m :MarksBrowser<CR>
-"map <Leader>d <plug>NERDTreeTabsToggle<CR>
-map <F3> :NERDTreeTabsToggle<CR>
+"map <F3> :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
 nnoremap <leader>c :cw 7<CR>
 set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>a :AT<CR>
-
-"\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
-"make,make with makeprg
-"nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
-map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
-function Do_OneFileMake()
-    if expand("%:p:h")!=getcwd()
-        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
-        return
-    endif
-    let sourcefileename=expand("%:t")
-    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
-    echohl WarningMsg | echo "filetype : "&filetype | echohl None
-    "return
-    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
-        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
-        return
-    endif
-    let deletedspacefilename=substitute(sourcefileename,' ','','g')
-    if strlen(deletedspacefilename)!=strlen(sourcefileename)
-        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
-        return
-    endif
-    if &filetype=="c"
-        set makeprg=gcc\ -o\ %<\ %
-    elseif &filetype=="cpp"
-        set makeprg=g++\ -o\ %<\ %
-    endif
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    let toexename=outfilename
-    if filereadable(outfilename)
-        let outdeletedsuccess=delete("./".outfilename)
-        if(outdeletedsuccess!=0)
-            set makeprg=make
-            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
-            return
-        endif
-    endif
-    "execute "silent make" "using silent,texts will disappear,should ctrl+l
-    "execute "normal :"
-    "if filereadable(outfilename)
-        "execute "!./".toexename
-    "endif
-endfunction
-"进行make的设置,make with Makefile
-map <F6> :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
-function Do_make()
-    set makeprg=make
-endfunction
-" with makeprg
-map <F8> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
-function Do_OneFileMake_RooFit()
-    if expand("%:p:h")!=getcwd()
-        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
-        return
-    endif
-    let sourcefileename=expand("%:t")
-    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
-    echohl WarningMsg | echo "filetype : "&filetype | echohl None
-    "return
-    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
-        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
-        return
-    endif
-    let deletedspacefilename=substitute(sourcefileename,' ','','g')
-    if strlen(deletedspacefilename)!=strlen(sourcefileename)
-        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
-        return
-    endif
-    if &filetype=="c"
-        set makeprg=gcc\ -o\ %<\ %
-    elseif &filetype=="cpp"
-        set makeprg=g++\ -lm\ -lRooFit\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
-    endif
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    let toexename=outfilename
-    if filereadable(outfilename)
-        let outdeletedsuccess=delete("./".outfilename)
-        if(outdeletedsuccess!=0)
-            set makeprg=make
-            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
-            return
-        endif
-    endif
-    "execute "silent make" "using silent,texts will disappear,should ctrl+l
-    "execute "normal :"
-    "if filereadable(outfilename)
-        "execute "!./".toexename
-    "endif
-endfunction
-map <F7> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
-function Do_OneFileMake_Root()
-    if expand("%:p:h")!=getcwd()
-        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
-        return
-    endif
-    let sourcefileename=expand("%:t")
-    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
-    echohl WarningMsg | echo "filetype : "&filetype | echohl None
-    "return
-    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
-        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
-        return
-    endif
-    let deletedspacefilename=substitute(sourcefileename,' ','','g')
-    if strlen(deletedspacefilename)!=strlen(sourcefileename)
-        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
-        return
-    endif
-    if &filetype=="c"
-        set makeprg=gcc\ -o\ %<\ %
-    elseif &filetype=="cpp"
-        set makeprg=g++\ -lm\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
-    endif
-    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
-    let toexename=outfilename
-    if filereadable(outfilename)
-        let outdeletedsuccess=delete("./".outfilename)
-        if(outdeletedsuccess!=0)
-            set makeprg=make
-            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
-            return
-        endif
-    endif
-    "execute "silent make" "using silent,texts will disappear,should ctrl+l
-    "execute "normal :"
-    "if filereadable(outfilename)
-        "execute "!./".toexename
-    "endif
-endfunction
 
 "修改注释颜色
 hi Comment ctermfg=6
@@ -268,3 +132,28 @@ set hlsearch
 hi Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
 "visual mode color
 hi Visual cterm=bold ctermfg=236 ctermbg=252 gui=bold guifg=#303030 guibg=#d0d0d0
+
+"latex-suite
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.  
+filetype plugin on  
+
+" IMPORTANT: win32 users will need to have 'shellslash' set so that latex  
+" can be called correctly.  
+set shellslash  
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you  
+" search in a singe file. This will confuse Latex-Suite. Set your grep  
+" program to always generate a file-name.  
+set grepprg=grep\ -nH\ $*  
+
+" OPTIONAL: This enables automatic indentation as you type.  
+filetype indent on  
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to   'plaintex' instead of 'tex', which results in vim-latex not being loaded.   The following changes the default filetype back to 'tex':  
+let g:tex_flavor='latex'
+
+"save and load session in MacVim
+if has("gui_running")
+    let g:session_autosave = 'yes'
+    let g:session_autoload = 'yes'
+endif

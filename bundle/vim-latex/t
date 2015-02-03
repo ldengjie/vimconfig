@@ -1,0 +1,9 @@
+As an addit​ion to Tobi's answer: After enabling Check for file changes, Skim will monitor file updates, but still ask you if you want to reload it (at least on the first change), which can still be a nuisance.
+
+It is possible to configure Skim to automatically reload without confirmation. To apply this, open a Terminal window and enter:
+
+defaults write -app Skim SKAutoReloadFileUpdate -boolean true
+
+
+
+
