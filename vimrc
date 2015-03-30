@@ -1,3 +1,4 @@
+set backupdir=~/.vim/backup
 "光亮光标行
 set cursorline
 "set cursorcolumn
