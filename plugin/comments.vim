@@ -70,7 +70,7 @@
 " Added support for ML, Caml, OCaml .ml, mli, PHP (v.4) .php4, PHP (v.5) .php5
 " files as provided by Denis Smolyar
 " Added support for noweb (requires only a small enhancement to the tex type)
-" as provided by Meik "fuller" Teﬂmer
+" as provided by Meik "fuller" Te?mer
 " Added support for vhdl files provided by Trond Danielsen
 " *********************************************************************************************
 " Jasmeet Anand 20 th March 2008 v2.10
@@ -93,14 +93,14 @@ endif
 let loaded_comments_plugin="v2.10"
 
 " key-mappings for comment line in normal mode
-noremap  <silent> <C-C> :call CommentLine()<CR>
+noremap  <leader>c :call CommentLine()<CR>
 " key-mappings for range comment lines in visual <Shift-V> mode
-vnoremap <silent> <C-C> :call RangeCommentLine()<CR>
+vnoremap <leader>c :call RangeCommentLine()<CR>
 
 " key-mappings for un-comment line in normal mode
-noremap  <silent> <C-D> :call UnCommentLine()<CR>
+noremap  <leader>d :call UnCommentLine()<CR>
 " key-mappings for range un-comment lines in visual <Shift-V> mode
-vnoremap <silent> <C-D> :call RangeUnCommentLine()<CR>
+vnoremap <leader>d :call RangeUnCommentLine()<CR>
 
 " function to comment line in normal mode
 function! CommentLine()
