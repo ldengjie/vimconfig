@@ -120,7 +120,7 @@ nmap <leader>m :MarksBrowser<CR>
 "map <F3> :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
-nnoremap <leader>c :cw 7<CR>
+"nnoremap <leader>c :cw 7<CR>
 set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>a :AT<CR>
@@ -132,6 +132,8 @@ set hlsearch
 hi Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
 "visual mode color
 hi Visual cterm=bold ctermfg=236 ctermbg=252 gui=bold guifg=#303030 guibg=#d0d0d0
+
+autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} map <Leader>ls :!open -a "Google Chrome" "%:p"<CR><CR>
 
 "latex-suite
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.  
@@ -154,6 +156,7 @@ let g:tex_flavor='latex'
 
 "save and load session in MacVim
 if has("gui_running")
+    set spell
     let g:session_autosave = 'yes'
     let g:session_autoload = 'yes'
 endif
