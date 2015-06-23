@@ -1,3 +1,6 @@
+"syntax enable
+"set background=dark
+"colorscheme solarized
 "光亮光标行
 set cursorline
 "set cursorcolumn
@@ -49,10 +52,11 @@ call pathogen#infect()
 "Powerline{
 set laststatus=2
 set guifont=PowerlineSymbols\ for\ Powerline
+set guifont=PowerlineSymbols\ for\ Powerline
 set nocompatible 
 set t_Co=256 
-let g:Powerline_symbols = 'fancy'
- "let g:Powerline_symbols='unicode'
+"let g:Powerline_symbols = 'fancy'
+ let g:Powerline_symbols='unicode'
 set fillchars+=stl:\ ,stlnc:\
 "} 
 
