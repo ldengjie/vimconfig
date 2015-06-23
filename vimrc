@@ -119,14 +119,22 @@ let g:DoxygenToolkit_authorName="ldengjie,lidengjie@ihep.ac.cn"
 "let g:indentLine_color_term = 239
  "GVim
 "let g:indentLine_color_gui = '#A4E57E'
-
 " none X terminal
 "let g:indentLine_color_tty_light = 7 " (default: 4)
 "let g:indentLine_color_dark = 1 " (default: 2)
 "¦, ┆, ︙ or │
-"let g:indentLine_char = '︙'
-let g:indentLine_char = '¦'
+"let g:indentLine_char = '│'
+let g:indentLine_char = '︙'
+"let g:indentLine_char = '|'
+"let g:indentLine_char = '¦'
+"let g:indentLine_enabled = 0
+nmap <leader>i :IndentLinesToggle<CR>
 "}
+
+"let g:indent_guides_start_level=2
+"let g:indent_guides_guide_size=1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=white 
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey 
 "nmap <leader>w :w<CR>
 nmap <leader>e :e<CR>
 nmap <leader>t :tabe<Space>
