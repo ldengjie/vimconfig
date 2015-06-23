@@ -1,6 +1,3 @@
-"syntax enable
-"set background=dark
-"colorscheme solarized
 "光亮光标行
 set cursorline
 "set cursorcolumn
@@ -47,6 +44,7 @@ set vb t_vb=
 
 
 "pathogen
+"execute pathogen#infect()
 call pathogen#infect()
 
 "Powerline{
@@ -92,7 +90,8 @@ nmap yp <Plug>(easyoperator-phrase-yank)
 
 "tagbar{
 "设置快捷键  
-nmap <F4> :TagbarToggle<CR>   
+"nmap <F4> :TagbarToggle<CR>   
+nmap <leader>4 :TagbarToggle<CR>   
 "设置宽度，默认为40  
 let g:tagbar_width =28 
 "打开vim时自动打开  
@@ -117,17 +116,179 @@ let g:DoxygenToolkit_authorName="ldengjie,lidengjie@ihep.ac.cn"
 ""let g:doxygen_enhanced_color=1
 "}
 
+"indentLine{ 
+" Vim
+"let g:indentLine_color_term = 239
+ "GVim
+"let g:indentLine_color_gui = '#A4E57E'
+" none X terminal
+"let g:indentLine_color_tty_light = 7 " (default: 4)
+"let g:indentLine_color_dark = 1 " (default: 2)
+"¦, ┆, ︙ or │
+"let g:indentLine_char = '│'
+let g:indentLine_char = '︙'
+"let g:indentLine_char = '|'
+"let g:indentLine_char = '¦'
+"let g:indentLine_enabled = 0
+nmap <leader>i :IndentLinesToggle<CR>
+"}
+
+"let g:indent_guides_start_level=2
+"let g:indent_guides_guide_size=1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=white 
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey 
 "nmap <leader>w :w<CR>
 nmap <leader>e :e<CR>
 nmap <leader>t :tabe<Space>
 nmap <leader>m :MarksBrowser<CR>
+"map <Leader>d <plug>NERDTreeTabsToggle<CR>
 "map <F3> :NERDTreeTabsToggle<CR>
+nmap <leader>3 :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
-"nnoremap <leader>c :cw 7<CR>
-set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
+nnoremap <leader>c :cw 7<CR>
+"set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>a :AT<CR>
+
+"\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
+"make,make with makeprg
+"nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
+"map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>5 :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+function Do_OneFileMake()
+    if expand("%:p:h")!=getcwd()
+        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
+        return
+    endif
+    let sourcefileename=expand("%:t")
+    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
+    echohl WarningMsg | echo "filetype : "&filetype | echohl None
+    "return
+    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
+        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
+        return
+    endif
+    let deletedspacefilename=substitute(sourcefileename,' ','','g')
+    if strlen(deletedspacefilename)!=strlen(sourcefileename)
+        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
+        return
+    endif
+    if &filetype=="c"
+        set makeprg=gcc\ -o\ %<\ %
+    elseif &filetype=="cpp"
+        set makeprg=g++\ -o\ %<\ %
+    endif
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    let toexename=outfilename
+    if filereadable(outfilename)
+        let outdeletedsuccess=delete("./".outfilename)
+        if(outdeletedsuccess!=0)
+            set makeprg=make
+            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
+            return
+        endif
+    endif
+    "execute "silent make" "using silent,texts will disappear,should ctrl+l
+    "execute "normal :"
+    "if filereadable(outfilename)
+        "execute "!./".toexename
+    "endif
+endfunction
+"进行make的设置,make with Makefile
+nmap <leader>6 :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+function Do_make()
+    set makeprg=make
+endfunction
+" with makeprg
+"map <F8> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>8 :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+function Do_OneFileMake_RooFit()
+    if expand("%:p:h")!=getcwd()
+        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
+        return
+    endif
+    let sourcefileename=expand("%:t")
+    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
+    echohl WarningMsg | echo "filetype : "&filetype | echohl None
+    "return
+    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
+        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
+        return
+    endif
+    let deletedspacefilename=substitute(sourcefileename,' ','','g')
+    if strlen(deletedspacefilename)!=strlen(sourcefileename)
+        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
+        return
+    endif
+    if &filetype=="c"
+        set makeprg=gcc\ -o\ %<\ %
+    elseif &filetype=="cpp"
+        set makeprg=g++\ -lm\ -lRooFit\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
+    endif
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    let toexename=outfilename
+    if filereadable(outfilename)
+        let outdeletedsuccess=delete("./".outfilename)
+        if(outdeletedsuccess!=0)
+            set makeprg=make
+            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
+            return
+        endif
+    endif
+    "execute "silent make" "using silent,texts will disappear,should ctrl+l
+    "execute "normal :"
+    "if filereadable(outfilename)
+        "execute "!./".toexename
+    "endif
+endfunction
+"map <F7> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>7 :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+function Do_OneFileMake_Root()
+    if expand("%:p:h")!=getcwd()
+        echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
+        return
+    endif
+    let sourcefileename=expand("%:t")
+    echohl WarningMsg | echo "filename : "sourcefileename | echohl None
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    echohl WarningMsg | echo "outfilename : "outfilename | echohl None
+    echohl WarningMsg | echo "filetype : "&filetype | echohl None
+    "return
+    if (sourcefileename=="" || (&filetype!="cpp" && &filetype!="c"))
+        echohl WarningMsg | echo "Fail to make! Please select the right file!" | echohl None
+        return
+    endif
+    let deletedspacefilename=substitute(sourcefileename,' ','','g')
+    if strlen(deletedspacefilename)!=strlen(sourcefileename)
+        echohl WarningMsg | echo "Fail to make! Please delete the spaces in the filename!" | echohl None
+        return
+    endif
+    if &filetype=="c"
+        set makeprg=gcc\ -o\ %<\ %
+    elseif &filetype=="cpp"
+        set makeprg=g++\ -lm\ -O\ -Wall\ -fpic\ -g\ `root-config\ --cflags`\ `root-config\ --libs`\ -o\ %<\ %
+    endif
+    let outfilename=substitute(sourcefileename,'\(\.[^.]*\)' ,'','g')
+    let toexename=outfilename
+    if filereadable(outfilename)
+        let outdeletedsuccess=delete("./".outfilename)
+        if(outdeletedsuccess!=0)
+            set makeprg=make
+            echohl WarningMsg | echo "Fail to make! I cannot delete the ".outfilename | echohl None
+            return
+        endif
+    endif
+    "execute "silent make" "using silent,texts will disappear,should ctrl+l
+    "execute "normal :"
+    "if filereadable(outfilename)
+        "execute "!./".toexename
+    "endif
+endfunction
 
 "修改注释颜色
 hi Comment ctermfg=6
@@ -159,8 +320,9 @@ filetype indent on
 let g:tex_flavor='latex'
 
 "save and load session in MacVim
+let g:session_autoload = 'no'
 if has("gui_running")
     set spell
     let g:session_autosave = 'yes'
-    let g:session_autoload = 'yes'
+    "let g:session_autoload = 'yes'
 endif

@@ -1,6 +1,6 @@
 " ~/.vim/sessions/default.vim:
 " Vim session script.
-" Created by session.vim 2.7 on 29 五月 2015 at 00:32:23.
+" Created by session.vim 2.7 on 23 June 2015 at 23:02:24.
 " Open this file in Vim and run :source % to restore your session.
 
 set guioptions=egmrL
@@ -13,7 +13,7 @@ if &background != 'light'
 	set background=light
 endif
 if !exists('g:colors_name') || g:colors_name != 'macvim' | colorscheme macvim | endif
-call setqflist([{'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(/usr/local/texlive/2014basic/texmf-dist/tex/generic/oberdiek/ifpdf.sty)'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ') (/usr/local/texlive/2014basic/texmf-dist/tex/latex/oberdiek/auxhook.sty)'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(/usr/local/texlive/2014basic/texmf-dist/tex/latex/beamer/beamerbasetitle.sty'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(/usr/local/texlive/2014basic/texmf-dist/tex/latex/beamer/beamerbaseframe.sty'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')) (./ldjtheme.sty'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(/usr/local/texlive/2014basic/texmf-dist/tex/latex/metalogo/metalogo.sty))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(/usr/local/texlive/2014basic/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ') (/usr/local/texlive/2014basic/texmf-dist/tex/latex/pgf/math/pgfmath.sty'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ')'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '))'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': '(./neutron_yield_eng.aux)'}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': ') (./neutron_yield_eng.out) (./neutron_yield_eng.out)'}, {'lnum': 41, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 41.'}, {'lnum': 41, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}               '}, {'lnum': 41, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 41, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}               '}, {'lnum': 48, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 48.'}, {'lnum': 48, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}               '}, {'lnum': 48, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 48, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}               '}, {'lnum': 54, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 54.'}, {'lnum': 54, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}               '}, {'lnum': 54, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 54, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}               '}, {'lnum': 59, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 59.'}, {'lnum': 59, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Definition of neutron yield}                                         '}, {'lnum': 59, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 59, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Definition of neutron yield}                                         '}, {'lnum': 0, 'col': 0, 'valid': 0, 'vcol': 0, 'nr': -1, 'type': '', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'using `EU1/ComicSansMS(0)/m/n'' instead on input line 114.'}, {'lnum': 114, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 114.'}, {'lnum': 114, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 114, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 114, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 124, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 124.'}, {'lnum': 124, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 124, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 124, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 126, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 126.'}, {'lnum': 126, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Event selection}                              '}, {'lnum': 126, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 126, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Event selection}                              '}, {'lnum': 193, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 193.'}, {'lnum': 193, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 193, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 193, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 220, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 220.'}, {'lnum': 220, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 220, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 220, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 240, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 240.'}, {'lnum': 240, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 240, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 240, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 242, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 242.'}, {'lnum': 242, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Efficiencies corrections}                                       '}, {'lnum': 242, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 242, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Efficiencies corrections}                                       '}, {'lnum': 261, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 261.'}, {'lnum': 261, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 261, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 261, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 290, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 290.'}, {'lnum': 290, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 290, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 290, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 315, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 315.'}, {'lnum': 315, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 315, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 315, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 318, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 318.'}, {'lnum': 318, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Result}                     '}, {'lnum': 318, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 318, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Result}                     '}, {'lnum': 355, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 355.'}, {'lnum': 355, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 355, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 355, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 358, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 358.'}, {'lnum': 358, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Comparison with other experiments}                                                '}, {'lnum': 358, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 358, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Comparison with other experiments}                                                '}, {'lnum': 385, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 385.'}, {'lnum': 385, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 385, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 385, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 410, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 410.'}, {'lnum': 410, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Comparison between data and MC}                                             '}, {'lnum': 410, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 410, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Comparison between data and MC}                                             '}, {'lnum': 425, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 425.'}, {'lnum': 425, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 425, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 425, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 442, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 442.'}, {'lnum': 442, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 442, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 442, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 459, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 459.'}, {'lnum': 459, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 459, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 459, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 469, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 469.'}, {'lnum': 469, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \section{Summary}                      '}, {'lnum': 469, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 469, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \section{Summary}                      '}, {'lnum': 492, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 492.'}, {'lnum': 492, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 492, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 492, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 502, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 502.'}, {'lnum': 502, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 502, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 502, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}, {'lnum': 587, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'W', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'LaTeX Warning: File `darkBlueTitle.pnt'' not found on input line 587.'}, {'lnum': 587, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    } \end{frame}                '}, {'lnum': 587, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Package graphics Error: Division by 0.'}, {'lnum': 587, 'col': 0, 'valid': 1, 'vcol': 0, 'nr': -1, 'type': 'E', 'pattern': '', 'filename': 'Library/Mobile Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex', 'text': 'Unable to load picture or PDF file ''darkBlueTitle.pnt''.                    \GXT@clipend  \end{frame}                '}])
+call setqflist([])
 let SessionLoad = 1
 if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
@@ -35,7 +35,7 @@ badd +1 Desktop/iwork/WG5.21Model_independent/ldjtheme.sty
 badd +1 neutron_yield_eng.log
 badd +763 Desktop/iwork/WS3.25_isotopes/Isotope_progress.log
 badd +73 neutron_yield_eng.aux
-badd +1 Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex
+badd +33 Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex
 badd +1 Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/ldjtheme.sty
 badd +1 Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_technote.tex
 badd +149 Library/Mobile\ Documents/com~apple~CloudDocs/iBlog/ldengjie.github.io/_posts/blog/2014-07-01-compile-gcc.md
@@ -43,81 +43,7 @@ badd +1914 Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neu
 argglobal
 silent! argdel *
 argadd Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex
-edit Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_eng.tex
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-set nosplitbelow
-set nosplitright
-wincmd t
-set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 45 + 26) / 52)
-exe '2resize ' . ((&lines * 4 + 26) / 52)
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=2
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-4,31fold
-58,58fold
-279,300fold
-71,309fold
-324,336fold
-310,340fold
-341,369fold
-373,382fold
-390,399fold
-406,415fold
-370,427fold
-428,455fold
-511,513fold
-526,528fold
-549,551fold
-560,563fold
-567,571fold
-619,622fold
-628,631fold
-456,636fold
-638,750fold
-751,781fold
-637,781fold
-71
-silent! normal! zo
-310
-silent! normal! zo
-370
-silent! normal! zo
-456
-silent! normal! zo
-let s:l = 17 - ((10 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-17
-normal! 086|
-wincmd w
-argglobal
-enew
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 45 + 26) / 52)
-exe '2resize ' . ((&lines * 4 + 26) / 52)
-tabedit Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_technote.tex
+edit Library/Mobile\ Documents/com~apple~CloudDocs/iwork/neutron_yield/neutron_yield_technote.tex
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -182,13 +108,142 @@ silent! normal! zE
 571,597fold
 598,602fold
 603,616fold
-let s:l = 168 - ((21 * winheight(0) + 25) / 50)
+3
+normal! zc
+32
+normal! zc
+34
+normal! zc
+36
+normal! zc
+40
+silent! normal! zo
+44
+normal! zc
+80
+normal! zc
+40
+normal! zc
+89
+silent! normal! zo
+185
+silent! normal! zo
+186
+normal! zc
+194
+silent! normal! zo
+201
+normal! zc
+210
+normal! zc
+194
+normal! zc
+185
+normal! zc
+218
+silent! normal! zo
+222
+silent! normal! zo
+227
+normal! zc
+222
+normal! zc
+235
+silent! normal! zo
+239
+normal! zc
+257
+normal! zc
+235
+normal! zc
+264
+silent! normal! zo
+268
+normal! zc
+286
+normal! zc
+264
+normal! zc
+293
+silent! normal! zo
+297
+normal! zc
+308
+normal! zc
+293
+normal! zc
+218
+normal! zc
+324
+silent! normal! zo
+326
+silent! normal! zo
+328
+normal! zc
+346
+normal! zc
+326
+normal! zc
+415
+silent! normal! zo
+416
+normal! zc
+433
+normal! zc
+415
+normal! zc
+324
+normal! zc
+89
+normal! zc
+460
+silent! normal! zo
+461
+normal! zc
+465
+normal! zc
+467
+normal! zc
+469
+normal! zc
+460
+normal! zc
+474
+silent! normal! zo
+479
+normal! zc
+500
+normal! zc
+522
+normal! zc
+474
+normal! zc
+541
+silent! normal! zo
+545
+normal! zc
+541
+normal! zc
+571
+silent! normal! zo
+575
+normal! zc
+581
+normal! zc
+587
+normal! zc
+571
+normal! zc
+598
+normal! zc
+603
+normal! zc
+let s:l = 618 - ((578 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-168
+618
 normal! 0
-2wincmd w
 tabnext 1
 if exists('s:wipebuf')
 "   silent exe 'bwipe ' . s:wipebuf
@@ -205,20 +260,7 @@ let &so = s:so_save | let &siso = s:siso_save
 " Everything down here is generated by vim-session (not supported
 " by :mksession out of the box).
 
-2wincmd w
-tabnext 1
-let s:bufnr_save = bufnr("%")
-let s:cwd_save = getcwd()
-cwindow
-if !getbufvar(s:bufnr_save, '&modified')
-  let s:wipebuflines = getbufline(s:bufnr_save, 1, '$')
-  if len(s:wipebuflines) <= 1 && empty(get(s:wipebuflines, 0, ''))
-    silent execute 'bwipeout' s:bufnr_save
-  endif
-endif
-execute "cd" fnameescape(s:cwd_save)
-1resize 45|vert 1resize 88|2resize 4|vert 2resize 88|
-2wincmd w
+1wincmd w
 tabnext 1
 if exists('s:wipebuf')
   if empty(bufname(s:wipebuf))
