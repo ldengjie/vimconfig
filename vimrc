@@ -88,7 +88,8 @@ nmap yp <Plug>(easyoperator-phrase-yank)
 
 "tagbar{
 "设置快捷键  
-nmap <F4> :TagbarToggle<CR>   
+"nmap <F4> :TagbarToggle<CR>   
+nmap <leader>4 :TagbarToggle<CR>   
 "设置宽度，默认为40  
 let g:tagbar_width =28 
 "打开vim时自动打开  
@@ -113,23 +114,38 @@ let g:DoxygenToolkit_authorName="ldengjie,lidengjie@ihep.ac.cn"
 ""let g:doxygen_enhanced_color=1
 "}
 
+"indentLine{ 
+" Vim
+"let g:indentLine_color_term = 239
+ "GVim
+"let g:indentLine_color_gui = '#A4E57E'
+
+" none X terminal
+"let g:indentLine_color_tty_light = 7 " (default: 4)
+"let g:indentLine_color_dark = 1 " (default: 2)
+"¦, ┆, ︙ or │
+"let g:indentLine_char = '︙'
+let g:indentLine_char = '¦'
+"}
 "nmap <leader>w :w<CR>
 nmap <leader>e :e<CR>
 nmap <leader>t :tabe<Space>
 nmap <leader>m :MarksBrowser<CR>
 "map <Leader>d <plug>NERDTreeTabsToggle<CR>
-map <F3> :NERDTreeTabsToggle<CR>
+"map <F3> :NERDTreeTabsToggle<CR>
+nmap <leader>3 :NERDTreeTabsToggle<CR>
 nnoremap <leader>p :cp<CR> 
 nnoremap <leader>n :cn<CR>
 nnoremap <leader>c :cw 7<CR>
-set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
+"set switchbuf+=usetab,newtab "Vim quickfix list launch files in new tab
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>a :AT<CR>
 
 "\if d.type=~?'e' <Bar><Bar> d.type=~?'w'  <Bar><Bar> d.text =~?'error' <Bar><Bar>d.text =~?'warning' <Bar>
 "make,make with makeprg
 "nnoremap <leader>m :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>
-map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+"map <F5> :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>5 :call Do_OneFileMake()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -172,12 +188,13 @@ function Do_OneFileMake()
     "endif
 endfunction
 "进行make的设置,make with Makefile
-map <F6> :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>6 :call Do_make()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_make()
     set makeprg=make
 endfunction
 " with makeprg
-map <F8> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+"map <F8> :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>8 :call Do_OneFileMake_RooFit()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_RooFit()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
@@ -219,7 +236,8 @@ function Do_OneFileMake_RooFit()
         "execute "!./".toexename
     "endif
 endfunction
-map <F7> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+"map <F7> :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
+nmap <leader>7 :call Do_OneFileMake_Root()<CR>:make!<CR><CR><CR>:ccl<CR>:cw 7<CR><CR>
 function Do_OneFileMake_Root()
     if expand("%:p:h")!=getcwd()
         echohl WarningMsg | echo "Fail to make! This file is not in the current dir! " | echohl None
