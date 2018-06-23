@@ -196,7 +196,7 @@ Plug 'haya14busa/vim-easyoperator-phrase'
 	nmap yp <Plug>(easyoperator-phrase-yank)
 
 "A simple ftplugin for `.prototxt` files
-Plug 'chiphogg/vim-prototxt'
+Plug 'chiphogg/vim-prototxt', { 'for': 'prototxt' }
 
 "多光标操作
 Plug 'terryma/vim-multiple-cursors'
@@ -531,7 +531,19 @@ Plug 'idanarye/vim-vebugger'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 	"let g:vebugger_leader = "d"
 
+"关灯看小说
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+	nmap <Leader>g :Goyo<CR>
+	"进入goyo模式后自动触发limelight,退出后则关闭
+	autocmd! User GoyoEnter Limelight
+	autocmd! User GoyoLeave Limelight!
+
 " vim-scripts repos 
+Plug 'vim-scripts/YankRing.vim'
+	"将yankring的历史文件夹移到~/.vim
+	let g:yankring_history_dir = '~/.vim/'
+	nmap <Leader>y :YRShow<CR>
 
 " non github repos 
 
