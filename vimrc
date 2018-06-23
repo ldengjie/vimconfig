@@ -539,6 +539,10 @@ Plug 'junegunn/limelight.vim'
 	autocmd! User GoyoEnter Limelight
 	autocmd! User GoyoLeave Limelight!
 
+" 对齐代码的虚线，写Python尤其需要
+Plug 'Yggdroot/indentLine'
+	"let g:indentLine_char = '|'
+
 " vim-scripts repos 
 Plug 'vim-scripts/YankRing.vim'
 	"将yankring的历史文件夹移到~/.vim
