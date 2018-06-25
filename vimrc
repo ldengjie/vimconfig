@@ -254,8 +254,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 "文件树
 Plug 'scrooloose/nerdtree'
 	let NERDTreeAutoDeleteBuffer=1
-	"取消快捷键s默认功能
+	"取消快捷键默认功能, :help NERDTree-s
 	let NERDTreeMapOpenVSplit='\s'
+	let NERDTreeMapToggleFilters='\f'
 	" o.......在已有窗口中打开文件、目录或书签，并跳到该窗口   .....|NERDTree-o|  
 	" Go......在已有窗口 中打开文件、目录或书签，但不跳到该窗口 .....|NERDTree-go| 
 	" t....... 在新Tab中打开选中文件/书签，并跳到新Tab		  .....|NERDTree-t|  
