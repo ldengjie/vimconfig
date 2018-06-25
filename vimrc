@@ -416,10 +416,10 @@ Plug 'ianva/vim-youdao-translater'
 	"let g:SuperTabDefaultCompletionType = "<C-X><C-U>"
 
 "自动补全,自带且只有c family的语法检查.for javascript的补全: 已集成tern(~/.tern-project),默认自动安装调用。(2017.05.30)
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --java-completer' }
-	let g:EclimCompletionMethod = 'omnifunc'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+	"let g:EclimCompletionMethod = 'omnifunc'
 	"关闭eclimd自带的语法错误检查
-	let g:EclimJavaValidate=0
+	"let g:EclimJavaValidate=0
 	"let g:EclimScalaValidate=0
 	" 从第一个键入字符就开始列出匹配项  
 	let g:ycm_min_num_of_chars_for_completion=1 

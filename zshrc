@@ -1,0 +1,39 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="bira"
+DISABLE_AUTO_UPDATE="true"
+# User configuration
+source $ZSH/oh-my-zsh.sh
+#export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+ 
+
+alias LS='ls'
+cd()
+{
+    chdir $*;
+    ls;
+}
+alias cdo='chdir'
+alias tree='tree -CNAl'
+alias treet='tree -CNAlthr'
+alias lt='ls -lthr'
+set autolist
+
+#change the color of ls,to make the dir aviliable on the black background
+export CLICOLOR=1
+export LSCOLORS=exgxcxdxcxexexcxcxexex
+
+alias tmux='tmux -2'
+#if [ -z "${TMUX}" ]
+#then
+    #tmux new -s mac
+    #tmux
+#fi
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+bindkey '^P' history-search-backward
+bindkey '^N' history-search-forward
