@@ -53,6 +53,9 @@ cd ~/.vim/plugged/
 
 :PlugInstall
 
+Q: Tagbar: Exuberant ctags not found
+A: sudo apt-get install ctags
+
 ubuntu16.04 编译vim时:
 Q: You need to install a terminal library
 A: sudo apt-get install libncurses5-dev

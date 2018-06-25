@@ -543,6 +543,9 @@ Plug 'junegunn/limelight.vim'
 " 对齐代码的虚线，写Python尤其需要
 Plug 'Yggdroot/indentLine'
 	"let g:indentLine_char = '|'
+"Yggdroot/indentLine会隐藏json里的",禁止json里隐藏引号，但md里还是隐藏#
+Plug 'elzr/vim-json'
+	let g:vim_json_syntax_conceal = 0
 
 " vim-scripts repos 
 Plug 'vim-scripts/YankRing.vim'
