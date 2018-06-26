@@ -12,6 +12,9 @@ ln -s ~/.vim/tmux.conf -> ~/.tmux.conf
 # eclim:
 自带 c/c++/python/java
 
+# Ag:
+sudo apt-get install silversearcher-ag
+
 # vim:
 <https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source>
 

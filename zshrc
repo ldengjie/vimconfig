@@ -20,6 +20,7 @@ alias cdo='chdir'
 alias tree='tree -CNAl'
 alias treet='tree -CNAlthr'
 alias lt='ls -lthr'
+alias vi='vim'
 set autolist
 
 #change the color of ls,to make the dir aviliable on the black background
