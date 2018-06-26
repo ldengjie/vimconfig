@@ -1,35 +1,10 @@
 
-vimconfig -> ~/.vim
+# ubuntu16.04
+sudo sh setup.sh
 
-# zsh:
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-ln -s ~/.vim/zshrc -> ~/.zshrc
+---
 
-# tmux:
-sudo apt-get install tmux
-ln -s ~/.vim/tmux.conf -> ~/.tmux.conf
-
-# eclim:
-自带 c/c++/python/java
-
-# Ag:
-sudo apt-get install silversearcher-ag
-
-# vim:
-<https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source>
-
-sudo apt install libncurses5-dev libgnome2-dev libgnomeui-dev \
-libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
-libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
-python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git
-
-sudo apt remove vim vim-runtime gvim
-
-git clone https://github.com/vim/vim --depth 1
-
-cd vim
-
-./configure --with-features=huge --enable-python3interp --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=/home/sugon/anaconda3/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-multibyte --enable-cscope
+configure for vim:
 
 > --with-features=huge：支持最大特性
 > --enable-rubyinterp：打开对ruby编写的插件的支持
@@ -42,19 +17,6 @@ cd vim
 > --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ 指定python 路径
 > --with-python-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu/ 指定python3路径
 > --prefix=/usr/local/vim：指定将要安装到的路径(自行创建)
-
-make && sudo make install
-
-ln -s ~/.vim/vimrc -> ~/.vimrc
-
-cd ~/.vim/plugged/
-
-> git clone --depth 1 --recursive https://github.com/Valloric/YouCompleteMe.git
-> cd YouCompleteMe
-> sudo apt-get install build-essential cmake
-> ./install.py --all
-
-:PlugInstall
 
 Q: Tagbar: Exuberant ctags not found
 A: sudo apt-get install ctags
