@@ -311,6 +311,8 @@ let g:NERDTreeIndicatorMapCustom = {
 Plug 'majutsushi/tagbar'
     "let g:tagbar_left = 1 "让tagbar在页面左侧显示，默认右边
     let g:tagbar_width = 30 "设置tagbar的宽度为30列，默认40.
+	"取消快捷键默认功能, :help tagbar
+	let tagbar_map_togglesort='\s'
 
 "nerdTree tagBar窗口排列
 	" +-----------+-------------+
