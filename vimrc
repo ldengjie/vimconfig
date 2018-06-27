@@ -32,7 +32,7 @@ nmap gb :bn<CR>
 nmap gB :bp<CR>
 
 nmap gd :normal! mt gd `t<CR>
-nmap <Leader>q :cclose<CR>
+nmap <leader>q :cclose<CR>:call Leave_nerdtree_tagbar()<CR>
 nmap gf :%!python -m json.tool<CR>
 
 "在离开 Insert 模式时自动切换至英文输入法
@@ -464,11 +464,39 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "关灯看小说
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
-    nmap <Leader>g :Goyo<CR>
+    nmap <Leader>g :call Goyo_before()<CR>
     let g:goyo_width = 100
+	" Color name (:help cterm-colors) or ANSI code
+	let g:limelight_conceal_ctermfg = 'none'
+	" Color name (:help gui-colors) or RGB color
+	let g:limelight_conceal_guifg = 'none'
+
     "line number, default 0
     "let g:goyo_linenr = 0
     "进入goyo模式后自动触发limelight,退出后则关闭
+    function! Leave_nerdtree_tagbar()
+		let l:nerdtree_winnr_goyo=bufwinnr(t:NERDTreeBufName)
+		let l:tagbar_winnr_goyo=bufwinnr('__Tagbar__')
+		for winno in range(1,winnr('$'))
+			if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
+				execute winno . 'wincmd w'
+				break
+			endif
+		endfor
+    endfunction
+    function! Goyo_before()
+		call Leave_nerdtree_tagbar()
+		if exists('t:NERDTreeBufName')
+			let g:nerdtree_open_goyo = bufwinnr(t:NERDTreeBufName) != -1
+		else
+			let g:nerdtree_open_goyo = 0
+		endif
+		let g:tagbar_open_goyo = bufwinnr('__Tagbar__') != -1
+		let g:curbufnr_goyo=winbufnr(0)
+		let g:line_goyo=line('.')
+		let g:col_goyo=col('.')
+		execute 'Goyo'
+    endfunction
     function! s:goyo_enter()
         if has('gui_running')
             set fullscreen
@@ -481,10 +509,11 @@ Plug 'junegunn/limelight.vim'
         let g:goyo_running=1
         let g:goyo_5 = SaveWinLayout()
         Limelight
-        let b:quitting = 0
-        let b:quitting_bang = 0
-        autocmd QuitPre <buffer> let b:quitting = 1
-        cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+		if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
+		if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
+		call Leave_nerdtree_tagbar()
+		execute 'b'.g:curbufnr_goyo
+		execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
     endfunction
     function! s:goyo_leave()
         if has('gui_running')
@@ -499,14 +528,13 @@ Plug 'junegunn/limelight.vim'
         unlet g:goyo_5
         Limelight!
         set background=dark
-        " Quit Vim if this is the only remaining buffer
-        if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-            if b:quitting_bang
-                qa!
-            else
-                qa
-            endif
-        endif
+		NERDTreeClose
+		TagbarClose
+		if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
+		if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
+		call Leave_nerdtree_tagbar()
+		execute 'b'.g:curbufnr_goyo
+		execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
     endfunction
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
@@ -566,25 +594,33 @@ function! ToggleMaxWin()
 
         unlet t:winMax
         if exists('t:orig_tab') | unlet t:orig_tab | endif
-        if exists('t:new_tab') | unlet t:new_tab | endif
-    else
-        "只有一个窗口时,不操作
-        if winnr('$')>1
-            let l:winMax_id=localtime()
-            let l:winMax_orig_winnr_tmp=winnr()
-            let l:winMax_orig_bufnr_tmp=winbufnr(0)
+		if exists('t:new_tab') | unlet t:new_tab | endif
 
-            let t:winMax=l:winMax_id
-            let t:orig_tab=l:winMax_id
-            let t:winMax_orig_winnr=l:winMax_orig_winnr_tmp
-            let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
-            tab split
-            let t:winMax=l:winMax_id
-            let t:new_tab=l:winMax_id
-            let t:winMax_orig_winnr=l:winMax_orig_winnr_tmp
-            let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
-        endif
+		"是在原来tab里操作时,关闭前一个最大化窗口后,自动最大化当前buffer
+		if l:winMax_orig_tabnr==l:curtab
+			call MaxWin()
+		endif
+    else
+		call MaxWin()
     endif
+endfunction
+function! MaxWin()
+	"只有一个窗口时,不操作
+	if winnr('$')>1
+		let l:winMax_id=localtime()
+		let l:winMax_orig_winnr_tmp=winnr()
+		let l:winMax_orig_bufnr_tmp=winbufnr(0)
+
+		let t:winMax=l:winMax_id
+		let t:orig_tab=l:winMax_id
+		let t:winMax_orig_winnr=l:winMax_orig_winnr_tmp
+		let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
+		tab split
+		let t:winMax=l:winMax_id
+		let t:new_tab=l:winMax_id
+		let t:winMax_orig_winnr=l:winMax_orig_winnr_tmp
+		let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
+	endif
 endfunction
 map <leader>z :call ToggleMaxWin()<CR>
 
