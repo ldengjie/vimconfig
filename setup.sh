@@ -33,12 +33,14 @@ git clone https://github.com/vim/vim --depth 1
 
 cd ~/.vim/vim
 
+# 修改 src/screen.c, 替换 ~ ^ 为空格
+
 sudo apt-get install libncurses5-dev
 
 # 需要配置python3路径
 ./configure --with-features=huge --enable-python3interp --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=/home/sugon/anaconda3/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-multibyte --enable-cscope
 
-# [mac]
+# [mac] TODO
 ./configure --with-features=huge --enable-python3interp --enable-pythoninterp --enable-rubyinterp --enable-luainterp --enable-perlinterp --enable-multibyte --enable-cscope
 
 make && sudo make install
