@@ -346,7 +346,7 @@ Plug 'ianva/vim-youdao-translater'
     "let g:SuperTabDefaultCompletionType = "<C-X><C-U>"
 
 "自动补全,自带且只有c family的语法检查.for javascript的补全: 已集成tern(~/.tern-project),默认自动安装调用。(2017.05.30)
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --all' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
     "let g:EclimCompletionMethod = 'omnifunc'
     "关闭eclimd自带的语法错误检查
     "let g:EclimJavaValidate=0
