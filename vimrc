@@ -53,6 +53,8 @@ set shiftwidth=4
 set expandtab
 "设置使用 C/C++ 语言的自动缩进方式
 set cindent 
+"底部显示preview window
+set splitright
 
 "=== 自动命令=== 
 "自动关闭时保存折叠，打开时读出折叠
@@ -75,7 +77,7 @@ nmap gj :%!python -m json.tool<CR>
 "== , ==
 let mapleader = "," 
 "关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap <leader>q :cclose<CR>:call Leave_nerdtree_tagbar()<CR>
+nmap cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin(CalWinSize())<CR>
 "强制保存文件
 nnoremap <Leader>w :w!<CR>
 
@@ -133,15 +135,15 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
     " shift+v+方向键选中(默认当前行)
     "加注释
-    nmap cc <Plug>NERDComComment
+    map cc <Plug>NERDCommenterComment
     "解开注释
-    nmap cu <Plug>NERDComUncommentLine
+    map cu <Plug>NERDCommenterUncomment
     "加上/解开注释, 智能判断
-    nmap c<space> <Plug>NERDCommenterToggle
+    map c<space> <Plug>NERDCommenterToggle
     "先复制, 再注解(p可以进行黏贴)
-    nmap cy <Plug>NERDCommenterYank
+    map cy <Plug>NERDCommenterYank
     " 取消掉默认的 <leader>cb
-    nmap <leader>\cb <Plug>NERDCommenterAlignBoth
+    map <leader>\cb <Plug>NERDCommenterAlignBoth
 
 "引号成对操作
 Plug 'tpope/vim-surround'
@@ -289,6 +291,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "语义补全 Semantic Completion: C-family, C#, Go, Java, JavaScript, Python, Rust, and TypeScript languages are supported natively by YouCompleteMe using the Clang, OmniSharp, Gocode/Godef, jdt.ls, Tern, Jedi, racer, and TSServer engines, respectively (2018.06.29). 
     "C 想全局使用,在~/.ycm_extra_conf.py加入你的库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.如果有使用构建工具的话,github上有一个叫YCM-Generator的插件,可以根据构建工具自动生成.ycm_extra_conf.py文件.
     "for javascript的补全: 已集成tern(~/.tern-project),默认自动安装调用。(2017.05.30)
+    "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
+    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     "语义补全候选数目，默认50
     "let g:ycm_max_num_candidates = 50
     "触发语义补全
@@ -312,8 +316,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     nnoremap gf :YcmCompleter GoToDefinitionElseDeclaration<CR>
     "nnoremap <leader>jl :YcmCompleter GoToDeclaration<CR>
     "nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
-    "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
-    autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
     "eclim
     "let g:EclimCompletionMethod = 'omnifunc'
@@ -433,7 +435,7 @@ Plug 'vim-airline/vim-airline'
     "删除指定buffer c1
     fun! DeleteThatBuffer(nr)
         let s:curBufNr = bufnr("%")
-        exe "normal ,".a:nr
+        exe "normal b".a:nr
         let s:thatBufNr = bufnr("%")
         if s:thatBufNr != a:nr
             exe "b #"
@@ -442,7 +444,7 @@ Plug 'vim-airline/vim-airline'
         endif
         exe "bdel ".s:thatBufNr
     endfun
-    "删除当前buffer cq
+    "删除当前buffer cb
     fun! DeleteCurBuffer()
         let s:curBufNr = bufnr("%")
         exe "bn"
@@ -490,78 +492,10 @@ Plug 'luochen1990/rainbow'
 
 "关灯看小说
 Plug 'junegunn/goyo.vim'
-    nmap gy :call Goyo_before()<CR>
     "goyo width (default: 80)
     "let g:goyo_width = 110
     "line number, default 0
     "let g:goyo_linenr = 1
-    
-    function! Leave_nerdtree_tagbar()
-        if exists('t:NERDTreeBufName')
-            let l:nerdtree_winnr_goyo=bufwinnr(t:NERDTreeBufName)
-        else
-            let l:nerdtree_winnr_goyo=-1
-        endif
-        let l:tagbar_winnr_goyo=bufwinnr('__Tagbar__')
-        for winno in range(1,winnr('$'))
-            if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
-                execute winno . 'wincmd w'
-                break
-            endif
-        endfor
-    endfunction
-    function! Goyo_before()
-        call Leave_nerdtree_tagbar()
-        if exists('t:NERDTreeBufName')
-            let g:nerdtree_open_goyo = bufwinnr(t:NERDTreeBufName) != -1
-        else
-            let g:nerdtree_open_goyo = 0
-        endif
-        let g:tagbar_open_goyo = bufwinnr('__Tagbar__') != -1
-        let g:curbufnr_goyo=winbufnr(0)
-        let g:line_goyo=line('.')
-        let g:col_goyo=col('.')
-        execute 'Goyo'
-    endfunction
-    function! s:goyo_enter()
-        if has('gui_running')
-            set fullscreen
-            set background=light
-            set linespace=7
-        elseif exists('$TMUX')
-            silent !tmux set status off
-            silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-        endif
-        let g:goyo_running=1
-        if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
-        if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
-        call Leave_nerdtree_tagbar()
-        execute 'b'.g:curbufnr_goyo
-        execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
-        "禁用Goyo自带VimResized事件,因为有bug
-        autocmd! goyo VimResized
-    endfunction
-    function! s:goyo_leave()
-        if has('gui_running')
-            set nofullscreen
-            set background=dark
-            set linespace=0
-        elseif exists('$TMUX')
-            silent !tmux set status on
-            silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-        endif
-        unlet g:goyo_running
-        set background=dark
-        NERDTreeClose
-        TagbarClose
-        if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
-        if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
-        call Leave_nerdtree_tagbar()
-        execute 'b'.g:curbufnr_goyo
-        execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
-    endfunction
-    autocmd! User GoyoEnter nested call <SID>goyo_enter()
-    autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "主题配色
 "Plug 'altercation/vim-colors-solarized'
@@ -665,15 +599,86 @@ function! MaxWin()
         let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
     endif
 endfunction
-map <leader>z :call ToggleMaxWin()<CR>
+map wz :call ToggleMaxWin()<CR>
 
 "== nerdtree tagbar goyo 共存 ==
+nmap gy :call GoyoToggle()<CR>
 let g:gy_width = '80%'
 let g:gy_height= '90%'
 augroup ntg
     autocmd!
-    autocmd VimResized *  call ReSizeWin(CalWinSize()) | call ReSizeWin(CalWinSize())
+    "BUG:当在tmux里运行时,单个窗口从Goyo模式返回时,窗口高度变为1.(2018.06.30 tmux 2.1 2.7)
+    autocmd VimResized *  call ReSizeWin(CalWinSize()) 
 augroup END
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+function! GoyoToggle()
+    call Leave_nerdtree_tagbar()
+    if exists('t:NERDTreeBufName')
+        let g:nerdtree_open_goyo = bufwinnr(t:NERDTreeBufName) != -1
+    else
+        let g:nerdtree_open_goyo = 0
+    endif
+    let g:tagbar_open_goyo = bufwinnr('__Tagbar__') != -1
+    let g:curbufnr_goyo=winbufnr(0)
+    let g:line_goyo=line('.')
+    let g:col_goyo=col('.')
+    execute 'Goyo'
+endfunction
+function! Leave_nerdtree_tagbar()
+    if exists('t:NERDTreeBufName')
+        let l:nerdtree_winnr_goyo=bufwinnr(t:NERDTreeBufName)
+    else
+        let l:nerdtree_winnr_goyo=-1
+    endif
+    let l:tagbar_winnr_goyo=bufwinnr('__Tagbar__')
+    for winno in range(1,winnr('$'))
+        if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
+            execute winno . 'wincmd w'
+            break
+        endif
+    endfor
+endfunction
+function! s:goyo_enter()
+    if has('gui_running')
+        set fullscreen
+        set background=light
+        set linespace=7
+    elseif exists('$TMUX')
+        silent !tmux set status off
+        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+    endif
+    let g:goyo_running=1
+    if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
+    if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
+    call Leave_nerdtree_tagbar()
+    execute 'b'.g:curbufnr_goyo
+    execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
+    "禁用Goyo自带VimResized事件,因为有bug
+    autocmd! goyo VimResized
+    "重新画图，覆盖默认大小
+    call ReSizeWin(CalWinSize())
+endfunction
+function! s:goyo_leave()
+    if has('gui_running')
+        set nofullscreen
+        set background=dark
+        set linespace=0
+    elseif exists('$TMUX')
+        silent !tmux set status on
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+    unlet g:goyo_running
+    set background=dark
+    NERDTreeClose
+    TagbarClose
+    if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
+    if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
+    call Leave_nerdtree_tagbar()
+    execute 'b'.g:curbufnr_goyo
+    execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
+endfunction
 
 function! GoyoWinLayout()
     let goyo_5=[]
@@ -745,11 +750,15 @@ function! OpenWin(winName)
     elseif a:winName == "tagbar"
         TagbarToggle
     endif
-    "bug:需要执行两边,否则从goyo_6_t返回goyo_5时，窗口并没有改变大小
-    call ReSizeWin(CalWinSize()) | call ReSizeWin(CalWinSize())
+    call ReSizeWin(CalWinSize()) 
 endfunction
 function! ReSizeWin(layout)
     if exists("g:goyo_running")
+        "BUG:需要执行两遍,否则1)从goyo_6_t(只打开tagbar)返回goyo_5时 2)goyo_enter()时，窗口并没有正确改变大小
+        for winno in range(1,len(a:layout))
+            execute 'vertical '.winno.' resize ' . a:layout[winno-1][1]
+            execute winno.' resize ' . a:layout[winno-1][0]
+        endfor
         for winno in range(1,len(a:layout))
             execute 'vertical '.winno.' resize ' . a:layout[winno-1][1]
             execute winno.' resize ' . a:layout[winno-1][0]
