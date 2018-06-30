@@ -20,7 +20,7 @@
 **co** 关闭[airline上部buffer栏里]其他buffer  
 **cr** 关闭[airline上部buffer栏里]右侧buffer  
 **cb** 关闭[airline上部buffer栏里]当前buffer  
-c[1-9] 关闭[airline上部buffer栏里]第1-9个buffer  
+**c[1-9]** 关闭[airline上部buffer栏里]第1-9个buffer  
 
 -- [d]elete --  
 **dp** 删除指定字符之间的字符  
@@ -29,7 +29,7 @@ c[1-9] 关闭[airline上部buffer栏里]第1-9个buffer
 -- [t]abs in buffers window --  
 **tn** [airline上部buffer栏里]下一个buffer  
 **tp** [airline上部buffer栏里]下一个buffer  
-t[1-9] [airline上部buffer栏里]跳转到第1-9个buffer  
+**t[1-9]** [airline上部buffer栏里]跳转到第1-9个buffer  
 
 -- [g]oto --  
 **ga** 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]  
