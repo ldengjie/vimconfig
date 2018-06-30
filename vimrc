@@ -70,7 +70,7 @@
 "关闭vi兼容模式
 set nocompatible
 
-"=== 图形界面=== 
+"=== 界面设置 === 
 if has("gui_running")
     "au GUIEnter * simalt ~x " 窗口启动时自动最大化
     set lines=50 columns=100 "启动时窗口大小
@@ -81,29 +81,9 @@ if has("gui_running")
     set guioptions-=b " 隐藏底部滚动条
     set showtabline=0 " 隐藏Tab栏
     set guifont=courier_new:h14
+    colorscheme solarized
 endif
 
-"=== 编码=== 
-"ambiwidth 默认值为 single。在其值为 single 时，若 encoding 为 utf-8，gvim 显示全角符号时就会出问题，会当作半角显示
-set ambiwidth=double
-"编辑区显示乱码
-set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,chinese,latin-1
-if has("win32")
-    set fileencoding=chinese
-else
-    set fileencoding=utf-8
-endif
-
-"=== 功能控制=== 
-"与windows共享剪贴板
-"set clipboard+=unnamed
-"在离开 Insert 模式时自动切换至英文输入法
-set noimdisable 
-"关闭vim声音错误提示，打开后会屏幕发白闪烁
-"set vb t_vb=
-
-"=== 界面显示=== 
 "语法高亮
 syntax on
 "显示行号
@@ -124,6 +104,37 @@ set expandtab
 set cindent 
 "底部显示preview window
 set splitright
+
+function! Setbg()
+    if has("gui_running")
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+
+call Setbg()
+
+
+"=== 编码=== 
+"ambiwidth 默认值为 single。在其值为 single 时，若 encoding 为 utf-8，gvim 显示全角符号时就会出问题，会当作半角显示
+set ambiwidth=double
+"编辑区显示乱码
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,chinese,latin-1
+if has("win32")
+    set fileencoding=chinese
+else
+    set fileencoding=utf-8
+endif
+
+"=== 功能控制=== 
+"与windows共享剪贴板
+"set clipboard+=unnamed
+"在离开 Insert 模式时自动切换至英文输入法
+set noimdisable 
+"关闭vim声音错误提示，打开后会屏幕发白闪烁
+"set vb t_vb=
 
 "=== 自动命令=== 
 "自动关闭时保存折叠，打开时读出折叠
@@ -146,7 +157,7 @@ nmap gj :%!python -m json.tool<CR>
 "-- , --
 let mapleader = "," 
 "关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin(CalWinSize())<CR>
+nmap cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin()<CR>
 "强制保存文件
 nnoremap <Leader>w :w!<CR>
 
@@ -285,7 +296,7 @@ Plug 'scrooloose/nerdtree'
     let NERDTreeMapOpenVSplit='\s'
     let NERDTreeMapToggleFilters='\f'
     let g:NERDTreeWinSize=30
-    nnoremap <Leader>n :call OpenWin('nerdtree')<CR>
+    nnoremap <Leader>n :call ToggleWin('nerdtree')<CR>
 
 "nerdtree里显示git信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -329,7 +340,7 @@ Plug 'majutsushi/tagbar'
     let tagbar_map_togglesort='\s'
     let tagbar_map_jump='o'
     let tagbar_map_togglefold='O'
-    nnoremap <Leader>t :call OpenWin('tagbar')<CR>
+    nnoremap <Leader>t :call ToggleWin('tagbar')<CR>
 
 "在本级目录和逐步查询上级目录中找tags，在保存的时候自动更新tags
 "Plug 'xolox/vim-misc'
@@ -445,11 +456,6 @@ Plug 'vim-airline/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':t' "buffer display only filename instead of path
     let g:airline#extensions#tabline#buffer_idx_mode = 1
-    nmap tp wt wl <Plug>AirlineSelectPrevTab
-    nmap tn wt wl <Plug>AirlineSelectNextTab
-    for nr in range(1,9)
-        execute 'nmap t'.nr.' wt wl <Plug>AirlineSelectTab'.nr
-    endfor
     let g:airline#extensions#tabline#buffer_nr_show = 0
     let g:airline#extensions#tabline#buffer_idx_format = {
         \ '0': '0 ',
@@ -461,63 +467,82 @@ Plug 'vim-airline/vim-airline'
         \ '6': '6 ',
         \ '7': '7 ',
         \ '8': '8 ',
-        \ '9': '9 ',
-        \ '10': '10 ',
-        \ '11': '11 ',
-        \ '12': '12 ',
-        \ '13': '13 ',
-        \ '14': '14 ',
-        \ '15': '15 '
+        \ '9': '9 '
         \}
     let g:airline#extensions#tabline#show_tabs = 0
-    "删除所有其他buffer co
-    fun! DeleteAllOtherBuffersInWindow()
-    let s:curWinNr = winnr()
-    if winbufnr(s:curWinNr) == 1
-        ret
-    endif
-    let s:curBufNr = bufnr("%")
-    exe "bn"
-    let s:lastBufNr = bufnr("%")
-    while s:lastBufNr != s:curBufNr
-        exe "bn"
-        exe "bdel ".s:lastBufNr
-        let s:lastBufNr = bufnr("%")
-    endwhile
-    endfun
-    "删除所有右边buffer cr
-    fun! DeleteAllRightBuffersInWindow()
-    let s:curWinNr = winnr()
-    if winbufnr(s:curWinNr) == 1
-        ret
-    endif
-    let s:curBufNr = bufnr("%")
-    exe "bn"
-    let s:lastBufNr = bufnr("%")
-    while s:lastBufNr > s:curBufNr
-        exe "bn"
-        exe "bdel ".s:lastBufNr
-        let s:lastBufNr = bufnr("%")
-    endwhile
-    exe "b ".s:curBufNr
+
+    nmap tp t l <Plug>AirlineSelectPrevTab
+    nmap tn t l <Plug>AirlineSelectNextTab
+    for nr in range(1,9)
+        execute 'nmap t'.nr.' t l <Plug>AirlineSelectTab'.nr
+    endfor
+
+    "跳转到指定选项卡
+    fun! GotoTab(tnr)
+        execute 'normal t'.a:tnr
     endfun
     "删除指定buffer c1
     fun! DeleteThatBuffer(nr)
-        let s:curBufNr = bufnr("%")
-        exe "normal b".a:nr
-        let s:thatBufNr = bufnr("%")
-        if s:thatBufNr != a:nr
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:buftotalnum=len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+        let g:tt=l:buftotalnum
+        exe 'echo "'.l:buftotalnum.'"'
+        if a:nr > l:buftotalnum
+            return
+        endif
+        let l:curBufNr = bufnr("%")
+        call GotoTab(a:nr)
+        let l:thatBufNr = bufnr("%")
+        if l:thatBufNr != l:curBufNr
             exe "b #"
         else
             exe "bn"
         endif
-        exe "bdel ".s:thatBufNr
+        exe "bdel ".l:thatBufNr
+    endfun
+    "删除所有其他buffer co
+    fun! DeleteAllOtherBuffersInWindow()
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:curBufNr = bufnr("%")
+        exe "bn"
+        let l:lastBufNr = bufnr("%")
+        while l:lastBufNr != l:curBufNr
+            exe "bn"
+            exe "bdel ".l:lastBufNr
+            let l:lastBufNr = bufnr("%")
+        endwhile
+    endfun
+    "删除所有右边buffer cr
+    fun! DeleteAllRightBuffersInWindow()
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:curBufNr = bufnr("%")
+        exe "bn"
+        let l:lastBufNr = bufnr("%")
+        while l:lastBufNr > l:curBufNr
+            exe "bn"
+            exe "bdel ".l:lastBufNr
+            let l:lastBufNr = bufnr("%")
+        endwhile
+        exe "b ".l:curBufNr
     endfun
     "删除当前buffer cb
     fun! DeleteCurBuffer()
-        let s:curBufNr = bufnr("%")
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:curBufNr = bufnr("%")
         exe "bn"
-        exe "bdel ".s:curBufNr
+        exe "bdel ".l:curBufNr
     endfun
     "close buffer
     map co :call DeleteAllOtherBuffersInWindow()<CR>
@@ -561,15 +586,11 @@ Plug 'luochen1990/rainbow'
 
 "关灯看小说
 Plug 'junegunn/goyo.vim'
-    "goyo width (default: 80)
-    "let g:goyo_width = 110
     "line number, default 0
     "let g:goyo_linenr = 1
 
 "主题配色
-"Plug 'altercation/vim-colors-solarized'
-    set background=dark
-"   colorscheme solarized
+Plug 'altercation/vim-colors-solarized'
 
 "=== 特定文件类型 === 
 "-- caffe --
@@ -671,21 +692,96 @@ function! MaxWin()
         let t:winMax_orig_bufnr=l:winMax_orig_bufnr_tmp
     endif
 endfunction
-map wz :call ToggleMaxWin()<CR>
+map <c-w>z :call ToggleMaxWin()<CR>
 
 "-- nerdtree tagbar goyo 共存 --
 nmap gy :call GoyoToggle()<CR>
+for direc in ['h','l','j','k']
+    exe 'map w'.direc.' :call GoyoWG("'.direc.'")<CR>'
+endfor
+for oz in ['o','z']
+    exe 'map w'.oz.' :call GoyoWOZ("'.oz.'")<CR>'
+endfor
+
 let g:gy_width = '80%'
 let g:gy_height= '90%'
+let g:gy_recover_nerdtree_tagbar= 0
+
 augroup ntg
     autocmd!
-    "BUG:当在tmux里运行时,单个窗口从Goyo模式返回时,窗口高度变为1.(2018.06.30 tmux 2.1 2.7)
-    autocmd VimResized *  call ReSizeWin(CalWinSize()) 
+    autocmd VimResized *  call ReSizeWin() 
 augroup END
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+"windows goto to skip surrounding margin in goyo mode
+function! GoyoWG(direction)
+    if exists("#goyo") && !(tolower(bufname('%')) =~ '.*tagbar.*' && a:direction=='h')
+        execute 'normal w2'.a:direction
+    else
+        execute 'normal '.a:direction
+    endif
+endfunction
+function! GoyoWOZ(ozp)
+    if exists("#goyo") 
+        call CloseWin('nerdtree')
+        call CloseWin('tagbar')
+    else
+        execute 'normal '.a:ozp
+    endif
+endfunction
+
+"enter/leave goyo mode using custom size
 function! GoyoToggle()
+    call Save_nerdtree_tagbar()
+    call Save_bufferinfo()
+
+    execute 'Goyo'
+
+    call Setbg()
+    call GuiSetting()
+    call TmuxToggle()
+    if get(g:, 'gy_recover_nerdtree_tagbar', 0) | call Recover_nerdtree_tagbar() |endif
+    call Recover_bufferinfo()
+    "禁用goyo自带的自动调整大小适应屏幕，因为有问题，极小以后再放大不能恢复宽度
+    if exists("#goyo") 
+        autocmd! goyo VimResized 
+    endif
+    "重新画图，覆盖默认大小，必须排在Recover_nerdtree_tagbar()之后
+    call ReSizeWin()
+endfunction
+
+function! GuiSetting()
+    if has('gui_running')
+        if exists("#goyo")
+            "set fullscreen
+            "set linespace=7
+        else
+            "set nofullscreen
+            "set linespace=0
+        endif
+    endif
+endfunction
+function! TmuxToggle()
+    if exists('$TMUX')
+        if exists("#goyo")
+            silent !tmux set status off
+        else
+            silent !tmux set status on
+        endif
+        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+    endif
+endfunction
+
+function! Save_bufferinfo()
+    let g:curbufnr_goyo=winbufnr(0)
+    let g:line_goyo=line('.')
+    let g:col_goyo=col('.')
+endfunction
+function! Recover_bufferinfo()
+    execute 'b'.g:curbufnr_goyo
+    execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
+endfunction
+
+function! Save_nerdtree_tagbar()
     call Leave_nerdtree_tagbar()
     if exists('t:NERDTreeBufName')
         let g:nerdtree_open_goyo = bufwinnr(t:NERDTreeBufName) != -1
@@ -693,10 +789,6 @@ function! GoyoToggle()
         let g:nerdtree_open_goyo = 0
     endif
     let g:tagbar_open_goyo = bufwinnr('__Tagbar__') != -1
-    let g:curbufnr_goyo=winbufnr(0)
-    let g:line_goyo=line('.')
-    let g:col_goyo=col('.')
-    execute 'Goyo'
 endfunction
 function! Leave_nerdtree_tagbar()
     if exists('t:NERDTreeBufName')
@@ -712,56 +804,24 @@ function! Leave_nerdtree_tagbar()
         endif
     endfor
 endfunction
-function! s:goyo_enter()
-    if has('gui_running')
-        set fullscreen
-        set background=light
-        set linespace=7
-    elseif exists('$TMUX')
-        silent !tmux set status off
-        silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
-    endif
-    let g:goyo_running=1
+function! Recover_nerdtree_tagbar()
+    call CloseWin('nerdtree')
+    call CloseWin('tagbar')
     if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
     if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
     call Leave_nerdtree_tagbar()
-    execute 'b'.g:curbufnr_goyo
-    execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
-    "禁用Goyo自带VimResized事件,因为有bug
-    autocmd! goyo VimResized
-    "重新画图，覆盖默认大小
-    call ReSizeWin(CalWinSize())
-endfunction
-function! s:goyo_leave()
-    if has('gui_running')
-        set nofullscreen
-        set background=dark
-        set linespace=0
-    elseif exists('$TMUX')
-        silent !tmux set status on
-        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
-    endif
-    unlet g:goyo_running
-    set background=dark
-    NERDTreeClose
-    TagbarClose
-    if g:tagbar_open_goyo | call OpenWin('tagbar') | endif
-    if g:nerdtree_open_goyo | call OpenWin('nerdtree') | endif
-    call Leave_nerdtree_tagbar()
-    execute 'b'.g:curbufnr_goyo
-    execute printf('normal! %dG%d|', g:line_goyo, g:col_goyo)
 endfunction
 
-function! GoyoWinLayout()
+function! GoyoWinSize()
     let goyo_5=[]
 
     let goyo_0_w=&columns
     let goyo_4_w=goyo_0_w
-    let goyo_2_w=&columns * str2nr(g:gy_width[:-2]) / 100
+    let goyo_2_w=&columns * str2nr(get(g:,'gy_width','80%')[:-2]) / 100
     let goyo_1_w=(&columns - goyo_2_w -2)/2
     let goyo_3_w=&columns - goyo_2_w -2 - goyo_1_w
 
-    let goyo_2_h=&lines * str2nr(g:gy_height[:-2]) / 100
+    let goyo_2_h=&lines * str2nr(get(g:,'gy_height','90%')[:-2]) / 100
     let goyo_1_h=goyo_2_h
     let goyo_3_h=goyo_2_h
     let goyo_0_h=(&lines - goyo_2_h -2)/2
@@ -778,7 +838,7 @@ function! GoyoWinLayout()
 endfunction
 
 function! CalWinSize()
-    let l:goyo_5 = GoyoWinLayout()
+    let l:goyo_5 = GoyoWinSize()
     let goyo_7=[]
     let screenHeight=2+l:goyo_5[0][0]+l:goyo_5[1][0]+l:goyo_5[4][0]
     let screenWidth=l:goyo_5[0][1]
@@ -816,24 +876,42 @@ function! CalWinSize()
     let g:goyo_7=goyo_7
     return goyo_7
 endfunction
-function! OpenWin(winName)
+function! ReSizeWin()
+    if exists("#goyo")
+        let l:layout=CalWinSize()
+        "BUG:需要执行两遍,否则1)从goyo_6_t(只打开tagbar)返回goyo_5时，窗口并没有正确改变大小
+        for winno in range(1,len(l:layout))
+            execute 'vertical '.winno.' resize ' . l:layout[winno-1][1]
+            execute winno.' resize ' . l:layout[winno-1][0]
+        endfor
+        for winno in range(1,len(l:layout))
+            execute 'vertical '.winno.' resize ' . l:layout[winno-1][1]
+            execute winno.' resize ' . l:layout[winno-1][0]
+        endfor
+    endif
+endfunction
+
+function! ToggleWin(winName)
     if a:winName == "nerdtree"
         NERDTreeToggle
     elseif a:winName == "tagbar"
         TagbarToggle
     endif
-    call ReSizeWin(CalWinSize()) 
+    call ReSizeWin() 
 endfunction
-function! ReSizeWin(layout)
-    if exists("g:goyo_running")
-        "BUG:需要执行两遍,否则1)从goyo_6_t(只打开tagbar)返回goyo_5时 2)goyo_enter()时，窗口并没有正确改变大小
-        for winno in range(1,len(a:layout))
-            execute 'vertical '.winno.' resize ' . a:layout[winno-1][1]
-            execute winno.' resize ' . a:layout[winno-1][0]
-        endfor
-        for winno in range(1,len(a:layout))
-            execute 'vertical '.winno.' resize ' . a:layout[winno-1][1]
-            execute winno.' resize ' . a:layout[winno-1][0]
-        endfor
+function! OpenWin(winName)
+    if a:winName == "nerdtree"
+        NERDTree
+    elseif a:winName == "tagbar"
+        TagbarOpen
     endif
+    call ReSizeWin() 
+endfunction
+function! CloseWin(winName)
+    if a:winName == "nerdtree"
+        NERDTreeClose
+    elseif a:winName == "tagbar"
+        TagbarClose
+    endif
+    call ReSizeWin() 
 endfunction
