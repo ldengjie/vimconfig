@@ -74,6 +74,8 @@ sudo sh setup.sh
 
 configure for compile vim:  
 
+**需要保证编译vim看到的或指定的python Library和编译ycm时看到的python/python-config是同一套，且python是一个可执行文件.详见 http://bc28335b.wiz03.com/share/s/2Ya3dr0qkABL2n0eR71ISkyG0fl6W-389A5l2n46HL3jUW39**
+
 > --with-features=huge：支持最大特性  
 > --enable-rubyinterp：打开对ruby编写的插件的支持  
 > --enable-pythoninterp：打开对python编写的插件的支持  
