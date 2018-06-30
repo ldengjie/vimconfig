@@ -70,7 +70,7 @@
 ## ubuntu16.04  
 sudo sh setup.sh  
 
-#Tips:  
+### Tips:  
 
 configure for compile vim:  
 
