@@ -30,7 +30,6 @@
 "tp [airline上部buffer栏里]下一个buffer
 "t[1-9] [airline上部buffer栏里]跳转到第1-9个buffer
 
-
 "-- [g]oto --
 "ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
 "gd 选中并返回原位置
