@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#tested on ubuntu16.04
+#have been tested on ubuntu16.04
 
 mv ../vimconfig ~/.vim
 cd ~/.vim
@@ -38,9 +38,10 @@ cd ~/.vim/vim
 sudo apt-get install libncurses5-dev
 
 # 需要配置python3路径
+# [ubuntu16.04]
 ./configure --with-features=huge --enable-python3interp --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=/home/sugon/anaconda3/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-multibyte --enable-cscope
 
-# [mac] TODO
+# [mac] 需要保证编译vim看到的或指定的python Library和编译ycm时看到的python/python-config是同一套，且python是一个可执行文件.详见 http://bc28335b.wiz03.com/share/s/2Ya3dr0qkABL2n0eR71ISkyG0fl6W-389A5l2n46HL3jUW39
 ./configure --with-features=huge --enable-python3interp --enable-pythoninterp --enable-rubyinterp --enable-luainterp --enable-perlinterp --enable-multibyte --enable-cscope
 
 make && sudo make install

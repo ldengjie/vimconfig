@@ -1,3 +1,72 @@
+"=== list of shortcuts ===
+
+"b 向上翻页
+"f 向下翻页
+"K 上移一行 == k
+"s 单字符跳转
+"v 自动扩展选择连接着的区域
+
+"-- [c]omment --
+"cc 加注释
+"cu 解开注释
+"c<space> 加上/解开注释, 智能判断
+"cy 先复制, 再注解(p可以进行黏贴)
+
+"-- [c]lose --
+"cq 关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
+"cw 关闭当前window
+"ct 关闭当前tabpage
+"co 关闭[airline上部buffer栏里]其他buffer
+"cr 关闭[airline上部buffer栏里]右侧buffer
+"cb 关闭[airline上部buffer栏里]当前buffer
+"c[1-9] 关闭[airline上部buffer栏里]第1-9个buffer
+
+"-- [d]elete --
+"dp 删除指定字符之间的字符
+"dl 删除指定行之间的行
+
+"-- [t]abs in buffers window --
+"tn [airline上部buffer栏里]下一个buffer
+"tp [airline上部buffer栏里]下一个buffer
+"t[1-9] [airline上部buffer栏里]跳转到第1-9个buffer
+
+
+"-- [g]oto --
+"ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
+"gd 选中并返回原位置
+"gf 跳转到变量的定义或声明处
+"gy 进入/离开 goyo 模式
+"gt 下一个tabpage
+"gT 上一个tabpage
+"gj 格式化json文件
+
+"-- [w]indow --
+"w <c-w>
+"wc 关闭当前的窗口,不能关闭最后一个窗口, 
+"wo 关闭当前窗口以外的所有窗口, [c*]依赖这个快捷键
+"wz 最大化当前窗口
+
+"-- [y]ank --
+"yp 复制指定字符之间的字符
+"yl 复制指定行之间的行
+
+",a 搜索单词
+",f 搜索文件
+",l Move to line
+",s Move to char == s
+",n 打开nerdtree
+",t 打开tagbar
+",w 强制保存文件
+",y 打开粘贴板
+
+"<c-y> 翻译当前单词
+"<c-g> 语义补齐
+"<c-j> 自动扩展输入
+"<c-n> 下拉菜单里下一个
+"<c-p> 下拉菜单里上一个
+
+"==== SCRIPT ====
+
 "关闭vi兼容模式
 set nocompatible
 
@@ -62,19 +131,19 @@ au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent loadview
 
 "=== 快捷键=== 
-nmap f <C-f>
-nmap bb <C-b>
+nmap f <c-f>
+nmap b <c-b>
 nmap K k
 "wc 关闭当前的窗口,不能关闭最后一个窗口, wo 关闭当前窗口以外的所有窗口, [,c*]依赖这个快捷键
-map w <C-w>
+map w <c-w>
 
-"== [g]oto ==
+"-- [g]oto --
 "选中并返回原位置
 nmap gd :normal! md gd `d<CR>
 "格式化json文件
 nmap gj :%!python -m json.tool<CR>
 
-"== , ==
+"-- , --
 let mapleader = "," 
 "关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
 nmap cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin(CalWinSize())<CR>
@@ -87,7 +156,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 "=== 操作 === 
-"== 跳转 ==
+"-- 跳转 --
 "光标跳转
 Plug 'Lokaltog/vim-easymotion'
     "Disable default mappings
@@ -111,13 +180,13 @@ Plug 'haya14busa/vim-easyoperator-phrase'
     nmap dp <Plug>(easyoperator-phrase-delete)
     nmap yp <Plug>(easyoperator-phrase-yank)
 
-"== 选中 ==
+"-- 选中 --
 "扩展选中区域   
 Plug 'terryma/vim-expand-region'
     vmap v <Plug>(expand_region_expand)
     vmap V <Plug>(expand_region_shrink)
 
-"== 批量 == 
+"-- 批量 -- 
 "重复上一个操作
 Plug 'tpope/vim-repeat'
 
@@ -154,7 +223,7 @@ Plug 'tpope/vim-surround'
     " ysiw"
     " Hello -> "Hello"
 
-"== 补齐 == 
+"-- 补齐 -- 
 "括号补齐
 Plug 'Raimondi/delimitMate'
     "syntax awareness (will not insert the closing delimiter in comments and other configurable regions)，输入时想把光标移动到｝后继续输入时，C-o进入normal模式，再a。   
@@ -165,7 +234,7 @@ Plug 'Raimondi/delimitMate'
     "" 0 - 不记录上次的补全方式
     "" 1 - 记住上次的补全方式,直到用其他的补全命令改变它
     "" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
-    "let g:SuperTabDefaultCompletionType = "<C-X><C-U>"
+    "let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     
 "添加模块代码扩展
 Plug 'SirVer/ultisnips'
@@ -345,8 +414,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "let g:ale_lint_delay=50
     "let g:ale_sign_error='✗'
     "let g:ale_sign_warning='⚠'
-    "nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-    "nmap <silent> <C-j> <Plug>(ale_next_wrap)
+    "nmap <silent> <c-k> <Plug>(ale_previous_wrap)
+    "nmap <silent> <c-j> <Plug>(ale_next_wrap)
     ""另:syntastic是代码风格检查工具,可以为不同的编程语言(对应为Vim中的filetype)配置不同的checker.甚至每个文件类型可以有若干个checker，syntastic会负责聚合警告和错误。只在保存文件时检查，不是实时的。for javascript，手动安装eslint后，调用eslint
     
 "调试
@@ -368,18 +437,18 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     "dr      Select mode only - |:VBGrawWriteSelectedText|
     "dR      Prompt for an argument for |:VBGrawWrite|
     
-"d=== 显示 === 
-"d状态栏美化
+"=== 显示 === 
+"状态栏美化
 Plug 'vim-airline/vim-airline'
-    set laststatus=2  "d永远显示状态栏
-    set t_Co=256      "d在windows中用xshell连接打开vim可以显示色彩
+    set laststatus=2  "永远显示状态栏
+    set t_Co=256      "在windows中用xshell连接打开vim可以显示色彩
     let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#fnamemod = ':t' "dbuffer display only filename instead of path
+    let g:airline#extensions#tabline#fnamemod = ':t' "buffer display only filename instead of path
     let g:airline#extensions#tabline#buffer_idx_mode = 1
-    nmap bp wt wl <Plug>AirlineSelectPrevTab
-    nmap bn wt wl <Plug>AirlineSelectNextTab
+    nmap tp wt wl <Plug>AirlineSelectPrevTab
+    nmap tn wt wl <Plug>AirlineSelectNextTab
     for nr in range(1,9)
-        execute 'nmap b'.nr.' wt wl <Plug>AirlineSelectTab'.nr
+        execute 'nmap t'.nr.' wt wl <Plug>AirlineSelectTab'.nr
     endfor
     let g:airline#extensions#tabline#buffer_nr_show = 0
     let g:airline#extensions#tabline#buffer_idx_format = {
@@ -503,11 +572,11 @@ Plug 'junegunn/goyo.vim'
 "   colorscheme solarized
 
 "=== 特定文件类型 === 
-"== caffe ==
+"-- caffe --
 "A simple ftplugin for `.prototxt` files
 Plug 'chiphogg/vim-prototxt', { 'for': 'prototxt' }
 
-"== scala ==
+"-- scala --
 "scala 缩进
 Plug 'derekwyatt/vim-scala'
     "To enable the indentation standard as recommended for Scaladoc comments (from http://docs.scala-lang.org/style/scaladoc.html, since Scaladoc2)
@@ -529,16 +598,19 @@ Plug 'vim-scripts/YankRing.vim'
     "将yankring的历史文件夹移到~/.vim
     let g:yankring_history_dir = '~/.vim/'
     nmap <Leader>y :YRShow<CR>
+
 "有道词典
 Plug 'ianva/vim-youdao-translater'
-    vnoremap <silent> <C-Y> :<C-u>Ydv<CR>
-    nnoremap <silent> <C-Y> :<C-u>Ydc<CR>
-    noremap <leader>yd :<C-u>Yde<CR>
+    "翻译当前单词
+    vnoremap <silent> <c-y> :<c-u>Ydv<CR>
+    nnoremap <silent> <c-y> :<c-u>Ydc<CR>
+    "翻译输入的单词
+    "noremap <leader>yd :<c-u>Yde<CR>
 
 call plug#end()
 
 "=== 自定义功能 === 
-"== 最大化当前buffer窗口 ==
+"-- 最大化当前buffer窗口 --
 function! ToggleMaxWin()
     if exists("t:winMax")
         let l:winMax_tmp=t:winMax
@@ -601,7 +673,7 @@ function! MaxWin()
 endfunction
 map wz :call ToggleMaxWin()<CR>
 
-"== nerdtree tagbar goyo 共存 ==
+"-- nerdtree tagbar goyo 共存 --
 nmap gy :call GoyoToggle()<CR>
 let g:gy_width = '80%'
 let g:gy_height= '90%'
