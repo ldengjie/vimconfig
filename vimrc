@@ -986,6 +986,8 @@ function! We()
     endif
 endfunction
 
+cabbrev  qall let g:quit_all= 1 <bar> qall
+cabbrev  qa let g:quit_all= 1 <bar> qall
 function! Qp()
     if exists('#goyo') && CommonWinNr()==5 && &modifiable
         let g:qfromgoyo=1
@@ -998,13 +1000,15 @@ function! Qp()
             endfor
         catch /./
             if !exists('g:quit_forced')
+                if exists(g:quit_all) | unlet g:quit_all | endif
                 throw v:exception
             endif
         endtry
+        if exists('$TMUX') | call TmuxStatusOn() | endif
     endif
-	if exists('#goyo')
-		if exists('$TMUX') | call TmuxStatusOn() | endif
-	endif
+    if exists('g:quit_all')
+        if exists('$TMUX') | call TmuxStatusOn() | endif
+    endif
 endfunction
 
 function! CommonWinNr()
