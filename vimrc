@@ -141,24 +141,24 @@ au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent loadview
 
 "=== 快捷键=== 
-nmap f <c-f>
-nmap b <c-b>
-nmap K k
+nmap <silent> f <c-f>
+nmap <silent> b <c-b>
+nmap <silent> K k
 "wc 关闭当前的窗口,不能关闭最后一个窗口, wo 关闭当前窗口以外的所有窗口, [,c*]依赖这个快捷键
-map w <c-w>
+map <silent> w <c-w>
 
 "-- [g]oto --
 "选中并返回原位置
-nmap gd :normal! md gd `d<CR>
+nmap <silent> gd :normal! md gd `d<CR>
 "格式化json文件
-nmap gj :%!python -m json.tool<CR>
+nmap <silent> gj :%!python -m json.tool<CR>
 
 "-- , --
 let mapleader = "," 
 "关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin()<CR>
+nmap <silent> cq :cclose<CR>:call Leave_nerdtree_tagbar()<CR>: call ReSizeWin()<CR>
 "强制保存文件
-nnoremap <Leader>w :w!<CR>
+nnoremap <silent> <leader>w :w!<CR>
 
 "=== vim-plug === 
 filetype plugin indent on
@@ -176,25 +176,25 @@ Plug 'Lokaltog/vim-easymotion'
     " Smartsign
     let g:EasyMotion_use_smartsign_us = 1
     " <Leader>f{char} to move to {char}
-    map  s <Plug>(easymotion-bd-f)
-    nmap s <Plug>(easymotion-overwin-f)
+    map <silent> s <Plug>(easymotion-bd-f)
+    nmap <silent> s <Plug>(easymotion-overwin-f)
     " Move to line
-    map <Leader>l <Plug>(easymotion-bd-jk)
-    nmap <Leader>l <Plug>(easymotion-overwin-line)
+    map <silent> <leader>l <Plug>(easymotion-bd-jk)
+    nmap <silent> <leader>l <Plug>(easymotion-overwin-line)
 Plug 'haya14busa/vim-easyoperator-line'
     let g:EasyOperator_line_do_mapping = 0
-    nmap dl <Plug>(easyoperator-line-delete)
-    nmap yl <Plug>(easyoperator-line-yank)
+    nmap <silent> dl <Plug>(easyoperator-line-delete)
+    nmap <silent> yl <Plug>(easyoperator-line-yank)
 Plug 'haya14busa/vim-easyoperator-phrase'
     let g:EasyOperator_phrase_do_mapping = 0
-    nmap dp <Plug>(easyoperator-phrase-delete)
-    nmap yp <Plug>(easyoperator-phrase-yank)
+    nmap <silent> dp <Plug>(easyoperator-phrase-delete)
+    nmap <silent> yp <Plug>(easyoperator-phrase-yank)
 
 "-- 选中 --
 "扩展选中区域   
 Plug 'terryma/vim-expand-region'
-    vmap v <Plug>(expand_region_expand)
-    vmap V <Plug>(expand_region_shrink)
+    vmap <silent> v <Plug>(expand_region_expand)
+    vmap <silent> V <Plug>(expand_region_shrink)
 
 "-- 批量 -- 
 "重复上一个操作
@@ -203,8 +203,8 @@ Plug 'tpope/vim-repeat'
 "符号两侧对齐: 
 Plug 'junegunn/vim-easy-align'
     "V选中行 -> ga[1|2\*][,|=| ]
-    vmap ga <Plug>(EasyAlign)
-    nmap ga <Plug>(EasyAlign)
+    vmap <silent> ga <Plug>(EasyAlign)
+    nmap <silent> ga <Plug>(EasyAlign)
 
 "多光标操作
 Plug 'terryma/vim-multiple-cursors'
@@ -214,15 +214,15 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
     " shift+v+方向键选中(默认当前行)
     "加注释
-    map cc <Plug>NERDCommenterComment
+    map <silent> cc <Plug>NERDCommenterComment
     "解开注释
-    map cu <Plug>NERDCommenterUncomment
+    map <silent> cu <Plug>NERDCommenterUncomment
     "加上/解开注释, 智能判断
-    map c<space> <Plug>NERDCommenterToggle
+    map <silent> c<space> <Plug>NERDCommenterToggle
     "先复制, 再注解(p可以进行黏贴)
-    map cy <Plug>NERDCommenterYank
+    map <silent> cy <Plug>NERDCommenterYank
     " 取消掉默认的 <leader>cb
-    map <leader>\cb <Plug>NERDCommenterAlignBoth
+    map <silent> <leader>\cb <Plug>NERDCommenterAlignBoth
 
 "引号成对操作
 Plug 'tpope/vim-surround'
@@ -259,7 +259,7 @@ Plug 'honza/vim-snippets'
 "搜索文件,最近打开,缓冲区域
 Plug 'ctrlpvim/ctrlp.vim'
     let g:ctrlp_cmd = 'CtrlP'
-    map <leader>f :CtrlPMRU<CR>
+    map <silent> <leader>f :CtrlPMRU<CR>
     let g:ctrlp_custom_ignore = {
         \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -290,12 +290,15 @@ Plug 'airblade/vim-rooter'
 
 "文件树
 Plug 'scrooloose/nerdtree'
+    "删除文件时自动删除文件对应buffer
     let NERDTreeAutoDeleteBuffer=1
     "取消快捷键默认功能, :help NERDTree-s
     let NERDTreeMapOpenVSplit='\s'
     let NERDTreeMapToggleFilters='\f'
     let g:NERDTreeWinSize=30
-    nnoremap <Leader>n :call ToggleWin('nerdtree')<CR>
+	"Automatically close nerdtree when NERDTree is the last buffer
+	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    nnoremap <silent> <Leader>n :call ToggleWin('nerdtree')<CR>
 
 "nerdtree里显示git信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -328,8 +331,8 @@ Plug 'rking/ag.vim'
     " q    close the quickfix window.
     " If [!] is not given the first error is jumped to.
     command! Agg exe 'Ag! -Q -s -w ' . expand('<cword>') . ' --ignore-dir node_modules --ignore-dir dist'
-    noremap <leader>Agg :Agg<CR>
-    noremap <leader>a :normal gd ,Agg<CR>
+    noremap <silent> <leader>Agg :Agg<CR>
+    noremap <silent> <leader>a :normal gd ,Agg<CR>
 
 "文档class分析
 Plug 'majutsushi/tagbar'
@@ -339,7 +342,7 @@ Plug 'majutsushi/tagbar'
     let tagbar_map_togglesort='\s'
     let tagbar_map_jump='o'
     let tagbar_map_togglefold='O'
-    nnoremap <Leader>t :call ToggleWin('tagbar')<CR>
+    nnoremap <silent> <Leader>t :call ToggleWin('tagbar')<CR>
 
 "在本级目录和逐步查询上级目录中找tags，在保存的时候自动更新tags
 "Plug 'xolox/vim-misc'
@@ -392,9 +395,9 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
   "\ }
 
     "代码跳转: C 前提是设置好.ycm_extra_conf.py
-    nnoremap gf :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    "nnoremap <leader>jl :YcmCompleter GoToDeclaration<CR>
-    "nnoremap <leader>jf :YcmCompleter GoToDefinition<CR>
+    nnoremap <silent> gf :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    "nnoremap <silent> <leader>jl :YcmCompleter GoToDeclaration<CR>
+    "nnoremap <silent> <leader>jf :YcmCompleter GoToDefinition<CR>
 
     "eclim
     "let g:EclimCompletionMethod = 'omnifunc'
@@ -402,13 +405,13 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "let g:EclimJavaValidate=0
     "let g:EclimScalaValidate=0
     "通过eclim实现定义跳转
-    "autocmd FileType java nnoremap <leader>jsd :JavaSearch<CR>
-    "autocmd FileType java nnoremap <leader>d :normal gd ,jsd zz<CR>
-    "autocmd FileType java nnoremap <leader>i :JavaImport<CR>
-    "autocmd FileType java nnoremap <leader>o :JavaImportOrganize<CR>
-    "autocmd FileType scala nnoremap <leader>csd :ScalaSearch<CR>
-    "autocmd FileType scala nnoremap <leader>d :normal gd ,csd zz<CR>
-    "autocmd FileType scala nnoremap <leader>i :ScalaImport<CR>
+    "autocmd FileType java nnoremap <silent> <leader>jsd :JavaSearch<CR>
+    "autocmd FileType java nnoremap <silent> <leader>d :normal gd ,jsd zz<CR>
+    "autocmd FileType java nnoremap <silent> <leader>i :JavaImport<CR>
+    "autocmd FileType java nnoremap <silent> <leader>o :JavaImportOrganize<CR>
+    "autocmd FileType scala nnoremap <silent> <leader>csd :ScalaSearch<CR>
+    "autocmd FileType scala nnoremap <silent> <leader>d :normal gd ,csd zz<CR>
+    "autocmd FileType scala nnoremap <silent> <leader>i :ScalaImport<CR>
 
 ""代码异步检测:拼写错误,语法错误。实时检测，并发运行。for javascript,手动安装eslint后,自动调用eslint(~/.eslint.json)
 "Plug 'w0rp/ale'
@@ -470,10 +473,12 @@ Plug 'vim-airline/vim-airline'
         \}
     let g:airline#extensions#tabline#show_tabs = 0
 
-    nmap tp t l <Plug>AirlineSelectPrevTab
-    nmap tn t l <Plug>AirlineSelectNextTab
+    "nmap <silent> tp t l <Plug>AirlineSelectPrevTab
+    "nmap <silent> tn t l <Plug>AirlineSelectNextTab
+    nmap <silent> tp :bp<CR>
+    nmap <silent> tn :bn<CR>
     for nr in range(1,9)
-        execute 'nmap t'.nr.' t l <Plug>AirlineSelectTab'.nr
+        execute 'nmap <silent> t'.nr.' t l <Plug>AirlineSelectTab'.nr
     endfor
 
     "跳转到指定选项卡
@@ -544,16 +549,16 @@ Plug 'vim-airline/vim-airline'
         exe "bdel ".l:curBufNr
     endfun
     "close buffer
-    map co :call DeleteAllOtherBuffersInWindow()<CR>
-    map cr :call DeleteAllRightBuffersInWindow()<CR>
+    map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
+    map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
     for nr in range(1,9)
-        execute 'map c'.nr.' :call DeleteThatBuffer('.nr.')<CR>'
+        execute 'map <silent> c'.nr.' :call DeleteThatBuffer('.nr.')<CR>'
     endfor
-    map cb :call DeleteCurBuffer()<CR>
+    map <silent> cb :call DeleteCurBuffer()<CR>
     "close window
-    map cw :close<CR>
+    map <silent> cw :close<CR>
     "close tab
-    map ct :tabclose<CR>
+    map <silent> ct :tabclose<CR>
 Plug 'vim-airline/vim-airline-themes'
     let g:airline_theme="papercolor" 
 
@@ -617,7 +622,7 @@ Plug 'elzr/vim-json'
 Plug 'vim-scripts/YankRing.vim'
     "将yankring的历史文件夹移到~/.vim
     let g:yankring_history_dir = '~/.vim/'
-    nmap <Leader>y :YRShow<CR>
+    nmap <silent> <leader>y :YRShow<CR>
 
 "有道词典
 Plug 'ianva/vim-youdao-translater'
@@ -625,7 +630,7 @@ Plug 'ianva/vim-youdao-translater'
     vnoremap <silent> <c-y> :<c-u>Ydv<CR>
     nnoremap <silent> <c-y> :<c-u>Ydc<CR>
     "翻译输入的单词
-    "noremap <leader>yd :<c-u>Yde<CR>
+    "noremap <silent> <leader>yd :<c-u>Yde<CR>
 
 call plug#end()
 
@@ -694,17 +699,17 @@ endfunction
 map <c-w>z :call ToggleMaxWin()<CR>
 
 "-- nerdtree tagbar goyo 共存 --
-nmap gy :call GoyoToggle()<CR>
+nmap <silent> gy :call GoyoToggle()<CR>
 for direc in ['h','l','j','k']
-    exe 'map w'.direc.' :call GoyoWG("'.direc.'")<CR>'
+    exe 'map <silent> w'.direc.' :call GoyoWG("'.direc.'")<CR>'
 endfor
 for oz in ['o','z']
-    exe 'map w'.oz.' :call GoyoWOZ("'.oz.'")<CR>'
+    exe 'map <silent> w'.oz.' :call GoyoWOZ("'.oz.'")<CR>'
 endfor
 
-let g:gy_width = '80%'
+let g:gy_width = '60%'
 let g:gy_height= '90%'
-let g:gy_recover_nerdtree_tagbar= 0
+let g:gy_recover_nerdtree_tagbar= 1
 
 augroup ntg
     autocmd!
@@ -759,15 +764,23 @@ function! GuiSetting()
         endif
     endif
 endfunction
+
 function! TmuxToggle()
     if exists('$TMUX')
         if exists("#goyo")
-            silent !tmux set status off
+            call TmuxStatusOff()
         else
-            silent !tmux set status on
+            call TmuxStatusOn()
         endif
-        silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
     endif
+endfunction
+function! TmuxStatusOff()
+    silent !tmux set status off
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+endfunction
+function! TmuxStatusOn()
+    silent !tmux set status on 
+    silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
 endfunction
 
 function! Save_bufferinfo()
@@ -796,12 +809,14 @@ function! Leave_nerdtree_tagbar()
         let l:nerdtree_winnr_goyo=-1
     endif
     let l:tagbar_winnr_goyo=bufwinnr('__Tagbar__')
-    for winno in range(1,winnr('$'))
-        if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
-            execute winno . 'wincmd w'
-            break
-        endif
-    endfor
+	if l:nerdtree_winnr_goyo != -1 || l:tagbar_winnr_goyo != -1
+		for winno in range(1,winnr('$'))
+			if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
+				execute winno . 'wincmd w'
+				break
+			endif
+		endfor
+	endif
 endfunction
 function! Recover_nerdtree_tagbar()
     call CloseWin('nerdtree')
@@ -913,4 +928,31 @@ function! CloseWin(winName)
         TagbarClose
     endif
     call ReSizeWin() 
+endfunction
+
+""=== init ===
+function! InitGoyo()
+	let l:initTab=tabpagenr()
+	call GoyoToggle()
+	exe 'tabclose '.l:initTab
+	let l:hasFile=len(bufname("%"))
+	call OpenWin('nerdtree')
+	if l:hasFile
+		exe 'normal l'
+	endif
+endfunction
+function! AutoCloseNerdtree()
+endfunction
+
+autocmd VimEnter * call InitGoyo()
+autocmd VimLeave *  if exists('$TMUX') | call TmuxStatusOn() | endif
+"autocmd User GoyoLeave  call TmuxStatusOn() | qa
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd BufWinLeave *
+autocmd QuitPre *
+
+function! Qp()
+	if exists('#goyo')
+		"let 
+	endif
 endfunction
