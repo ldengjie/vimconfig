@@ -965,11 +965,7 @@ function! AutoCloseNerdtree()
 endfunction
 
 autocmd ntg VimEnter * call InitGoyo()
-autocmd ntg VimLeave *  if exists('$TMUX') | call TmuxStatusOn() | endif
-"autocmd User GoyoLeave  call TmuxStatusOn() | qa
-"autocmd BufWinLeave *
 
-"autocmd BufEnter * call Be()
 autocmd ntg WinEnter * call We()
 autocmd ntg QuitPre * call Qp()
 autocmd ntg TabEnter * call Te()
@@ -1006,6 +1002,9 @@ function! Qp()
             endif
         endtry
     endif
+	if exists('#goyo')
+		if exists('$TMUX') | call TmuxStatusOn() | endif
+	endif
 endfunction
 
 function! CommonWinNr()
