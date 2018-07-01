@@ -134,6 +134,8 @@ endif
 set noimdisable 
 "关闭vim声音错误提示，打开后会屏幕发白闪烁
 "set vb t_vb=
+"buffer未保存也可以切换
+set hidden
 
 "=== 自动命令=== 
 "自动关闭时保存折叠，打开时读出折叠
@@ -294,10 +296,12 @@ Plug 'scrooloose/nerdtree'
     let NERDTreeAutoDeleteBuffer=1
     "取消快捷键默认功能, :help NERDTree-s
     let NERDTreeMapOpenVSplit='\s'
+    let NERDTreeMapOpenInTab='\t'
+    let NERDTreeMapOpenInTabSilent='\T'
     let NERDTreeMapToggleFilters='\f'
     let g:NERDTreeWinSize=30
-	"Automatically close nerdtree when NERDTree is the last buffer
-	autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    "Automatically close nerdtree when NERDTree is the last buffer
+    autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     nnoremap <silent> <Leader>n :call ToggleWin('nerdtree')<CR>
 
 "nerdtree里显示git信息
@@ -717,9 +721,21 @@ augroup ntg
 augroup END
 
 "windows goto to skip surrounding margin in goyo mode
+autocmd ntg WinEnter * call SkipCount()
+function! SkipCount()
+    let g:skip_count=get(g:,'skip_count',0)+1
+endfunction
 function! GoyoWG(direction)
     if exists("#goyo") && !(tolower(bufname('%')) =~ '.*tagbar.*' && a:direction=='h')
-        execute 'normal w2'.a:direction
+        let l:lastCount=get(g:,'skip_count',0)
+        let l:lastWinNr=winnr()
+        execute 'normal '.a:direction
+        let l:curCount=get(g:,'skip_count',0)
+        "let l:curWinNr=winnr()
+        if l:curCount-l:lastCount >= 2
+            exe l:lastWinNr.' wincmd w'
+            execute 'normal w2'.a:direction
+        endif
     else
         execute 'normal '.a:direction
     endif
@@ -728,6 +744,10 @@ function! GoyoWOZ(ozp)
     if exists("#goyo") 
         call CloseWin('nerdtree')
         call CloseWin('tagbar')
+        if CommonWinNr()>5
+            call GoyoToggle()
+            call GoyoToggle()
+        endif
     else
         execute 'normal '.a:ozp
     endif
@@ -809,14 +829,14 @@ function! Leave_nerdtree_tagbar()
         let l:nerdtree_winnr_goyo=-1
     endif
     let l:tagbar_winnr_goyo=bufwinnr('__Tagbar__')
-	if l:nerdtree_winnr_goyo != -1 || l:tagbar_winnr_goyo != -1
-		for winno in range(1,winnr('$'))
-			if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
-				execute winno . 'wincmd w'
-				break
-			endif
-		endfor
-	endif
+    if l:nerdtree_winnr_goyo != -1 || l:tagbar_winnr_goyo != -1
+        for winno in range(1,winnr('$'))
+            if winno != l:nerdtree_winnr_goyo && winno != l:tagbar_winnr_goyo
+                execute winno . 'wincmd w'
+                break
+            endif
+        endfor
+    endif
 endfunction
 function! Recover_nerdtree_tagbar()
     call CloseWin('nerdtree')
@@ -932,27 +952,68 @@ endfunction
 
 ""=== init ===
 function! InitGoyo()
-	let l:initTab=tabpagenr()
-	call GoyoToggle()
-	exe 'tabclose '.l:initTab
-	let l:hasFile=len(bufname("%"))
-	call OpenWin('nerdtree')
-	if l:hasFile
-		exe 'normal l'
-	endif
+    let l:initTab=tabpagenr()
+    call GoyoToggle()
+    exe 'tabclose '.l:initTab
+    let l:hasFile=len(bufname("%"))
+    call OpenWin('nerdtree')
+    if l:hasFile
+        exe 'normal l'
+    endif
 endfunction
 function! AutoCloseNerdtree()
 endfunction
 
-autocmd VimEnter * call InitGoyo()
-autocmd VimLeave *  if exists('$TMUX') | call TmuxStatusOn() | endif
+autocmd ntg VimEnter * call InitGoyo()
+autocmd ntg VimLeave *  if exists('$TMUX') | call TmuxStatusOn() | endif
 "autocmd User GoyoLeave  call TmuxStatusOn() | qa
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd BufWinLeave *
-autocmd QuitPre *
+"autocmd BufWinLeave *
+
+"autocmd BufEnter * call Be()
+autocmd ntg WinEnter * call We()
+autocmd ntg QuitPre * call Qp()
+autocmd ntg TabEnter * call Te()
+
+function! Te()
+    if (!exists('#goyo')) && exists('g:qfromgoyo')
+        if exists('g:quit_forced')
+            qa!
+        else
+            qa
+        endif
+    endif
+endfunction
+
+function! We()
+    if exists('#goyo') && CommonWinNr()==5 && &modifiable
+        cabbrev <buffer> q! let g:quit_forced = 1 <bar> q!
+    endif
+endfunction
 
 function! Qp()
-	if exists('#goyo')
-		"let 
-	endif
+    if exists('#goyo') && CommonWinNr()==5 && &modifiable
+        let g:qfromgoyo=1
+        try
+            for eachbuf in filter(range(1, bufnr('$')), 'buflisted(v:val)')
+                exe 'b '.eachbuf
+                if &mod
+                    throw 'goyo E37: No write since last change ("'.bufname('%').'")'
+                endif
+            endfor
+        catch /./
+            if !exists('g:quit_forced')
+                throw v:exception
+            endif
+        endtry
+    endif
+endfunction
+
+function! CommonWinNr()
+    if exists('t:NERDTreeBufName')
+        let l:nerdtree_open_goyo = bufwinnr(t:NERDTreeBufName) != -1
+    else
+        let l:nerdtree_open_goyo = 0
+    endif
+    let l:tagbar_open_goyo = bufwinnr('__Tagbar__') != -1
+    return winnr('$')-l:nerdtree_open_goyo - l:tagbar_open_goyo
 endfunction
