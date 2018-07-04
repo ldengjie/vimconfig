@@ -591,9 +591,10 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-Plug 'junegunn/goyo.vim'
-    "line number, default 0
-    "let g:goyo_linenr = 1
+Plug 'ldengjie/vim-absorb'
+    let g:absorb_width = '80%'
+    let g:absorb_height= '90%'
+
 
 "主题配色
 Plug 'altercation/vim-colors-solarized'
@@ -633,10 +634,6 @@ Plug 'ianva/vim-youdao-translater'
     nnoremap <silent> <c-y> :<c-u>Ydc<CR>
     "翻译输入的单词
     "noremap <silent> <leader>yd :<c-u>Yde<CR>
-
-Plug 'ldengjie/vim-absorb'
-    let g:absorb_width = '80%'
-    let g:absorb_height= '90%'
 
 call plug#end()
 
