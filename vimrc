@@ -463,7 +463,7 @@ Plug 'fholgado/minibufexpl.vim'
     "行数
 	let g:miniBufExplMaxSize = 2
     "自动启动的buffer数量
-    let g:miniBufExplBuffersNeeded = 0
+    let g:miniBufExplBuffersNeeded = 2
     nmap <silent> <leader>m :MBEToggle<CR>
 
     nmap <silent> tn :call absorb#backtoinner()<CR> :bn<CR>
