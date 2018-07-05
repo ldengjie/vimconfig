@@ -94,6 +94,7 @@ set scrolloff=3
 "高亮显示搜索结果
 set hlsearch
 hi Search term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=Yellow
+set t_Co=256      "在windows中用xshell连接打开vim可以显示色彩
 "缩进4字符，tab变为空格
 set ts=4 
 set softtabstop=4 
@@ -300,7 +301,7 @@ Plug 'scrooloose/nerdtree'
     let NERDTreeMapOpenInTabSilent='\T'
     let NERDTreeMapToggleFilters='\f'
     let g:NERDTreeWinSize=30
-    nnoremap  <Leader>n :NERDTreeToggle <bar> call absorb#reSizeWin()<CR>  
+    nnoremap<silent>  <Leader>n :NERDTreeToggle <bar> call absorb#reSizeWin()<CR>  
 
 "nerdtree里显示git信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -344,7 +345,7 @@ Plug 'majutsushi/tagbar'
     let tagbar_map_togglesort='\s'
     let tagbar_map_jump='o'
     let tagbar_map_togglefold='O'
-    nnoremap  <Leader>t :call tagbar#ToggleWindow()<CR>:call absorb#reSizeWin()<CR>
+    nnoremap<silent>  <Leader>t :call tagbar#ToggleWindow()<CR>:call absorb#reSizeWin()<CR>
 
 "在本级目录和逐步查询上级目录中找tags，在保存的时候自动更新tags
 "Plug 'xolox/vim-misc'
@@ -371,16 +372,16 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "let g:ycm_collect_identifiers_from_tags_files = 1
     "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
     let g:ycm_seed_identifiers_with_syntax=1   
+    "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
+	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
     "语义补全 Semantic Completion: C-family, C#, Go, Java, JavaScript, Python, Rust, and TypeScript languages are supported natively by YouCompleteMe using the Clang, OmniSharp, Gocode/Godef, jdt.ls, Tern, Jedi, racer, and TSServer engines, respectively (2018.06.29). 
     "C 想全局使用,在~/.ycm_extra_conf.py加入你的库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.如果有使用构建工具的话,github上有一个叫YCM-Generator的插件,可以根据构建工具自动生成.ycm_extra_conf.py文件.
     "for javascript的补全: 已集成tern(~/.tern-project),默认自动安装调用。(2017.05.30)
-    "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
-    "autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-    "语义补全候选数目，默认50
-    "let g:ycm_max_num_candidates = 50
     "触发语义补全
     let g:ycm_key_invoke_completion = "<c-g>"
+    "语义补全候选数目，默认50
+    "let g:ycm_max_num_candidates = 50
     "自动触发语义补全,scala时比较慢1-2s
     "let g:ycm_semantic_triggers =  {
   "\   'c' : ['->', '.'],
@@ -453,62 +454,28 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
     "dR      Prompt for an argument for |:VBGrawWrite|
     
 "=== 显示 === 
-"状态栏美化
-Plug 'vim-airline/vim-airline'
-    set laststatus=2  "永远显示状态栏
-    set t_Co=256      "在windows中用xshell连接打开vim可以显示色彩
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#fnamemod = ':t' "buffer display only filename instead of path
-    let g:airline#extensions#tabline#buffer_idx_mode = 1
-    let g:airline#extensions#tabline#buffer_nr_show = 0
-    let g:airline#extensions#tabline#buffer_idx_format = {
-        \ '0': '0 ',
-        \ '1': '1 ',
-        \ '2': '2 ',
-        \ '3': '3 ',
-        \ '4': '4 ',
-        \ '5': '5 ',
-        \ '6': '6 ',
-        \ '7': '7 ',
-        \ '8': '8 ',
-        \ '9': '9 '
-        \}
-    let g:airline#extensions#tabline#show_tabs = 0
+"buffer explorer
+Plug 'fholgado/minibufexpl.vim'
+	let g:miniBufExplBRSplit = 0
+	let g:miniBufExplSplitToEdge = 0
+	let g:miniBufExplMaxSize = 1
+    let g:miniBufExplBuffersNeeded = 1
 
-    "nmap <silent> tp t l <Plug>AirlineSelectPrevTab
-    "nmap <silent> tn t l <Plug>AirlineSelectNextTab
-    nmap <silent> tp :bp<CR>
-    nmap <silent> tn :bn<CR>
-    for nr in range(1,9)
-        execute 'nmap <silent> t'.nr.' t l <Plug>AirlineSelectTab'.nr
+    "nmap <silent> tn :call absorb#backtoinner()<CR> :MBEbn<CR>
+    "nmap <silent> tp :call absorb#backtoinner()<CR> :MBEbp<CR>
+    nmap <silent> tn :call absorb#backtoinner()<CR> :bn<CR>
+    nmap <silent> tp :call absorb#backtoinner()<CR> :bp<CR>
+    for nr in range(1,99)
+        execute 'nmap <silent> t'.nr.' :call absorb#backtoinner()<CR> :b '.nr.'<CR>'
     endfor
+    for nr in range(1,99)
+        execute 'nmap <silent> c'.nr.' :call absorb#backtoinner()<CR> :MBEbd '.nr.'<CR>'
+    endfor
+    map <silent> cb :bd<CR>
+    "close buffer
+    map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
+    map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
 
-    "跳转到指定选项卡
-    fun! GotoTab(tnr)
-        execute 'normal t'.a:tnr
-    endfun
-    "删除指定buffer c1
-    fun! DeleteThatBuffer(nr)
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:buftotalnum=len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-        let g:tt=l:buftotalnum
-        exe 'echo "'.l:buftotalnum.'"'
-        if a:nr > l:buftotalnum
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        call GotoTab(a:nr)
-        let l:thatBufNr = bufnr("%")
-        if l:thatBufNr != l:curBufNr
-            exe "b #"
-        else
-            exe "bn"
-        endif
-        exe "bdel ".l:thatBufNr
-    endfun
     "删除所有其他buffer co
     fun! DeleteAllOtherBuffersInWindow()
         let l:curWinNr = winnr()
@@ -540,29 +507,9 @@ Plug 'vim-airline/vim-airline'
         endwhile
         exe "b ".l:curBufNr
     endfun
-    "删除当前buffer cb
-    fun! DeleteCurBuffer()
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        exe "bn"
-        exe "bdel ".l:curBufNr
-    endfun
-    "close buffer
-    map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
-    map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
-    for nr in range(1,9)
-        execute 'map <silent> c'.nr.' :call DeleteThatBuffer('.nr.')<CR>'
-    endfor
-    map <silent> cb :call DeleteCurBuffer()<CR>
-    "close window
-    map <silent> cw :close<CR>
-    "close tab
-    map <silent> ct :tabclose<CR>
+
 Plug 'vim-airline/vim-airline-themes'
-    let g:airline_theme="papercolor" 
+	let g:airline_theme="papercolor" 
 
 "括号彩色
 Plug 'luochen1990/rainbow'
@@ -591,7 +538,8 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-Plug 'ldengjie/vim-absorb'
+"Plug 'ldengjie/vim-absorb'
+Plug '~/vim-absorb'
     let g:absorb_width = '80%'
     let g:absorb_height= '90%'
 
@@ -640,6 +588,6 @@ call plug#end()
 "=== init ===
 autocmd VimEnter * call absorb#execute()
 
-nmap <silent> ab :call absorb#execute()<CR>
+"nmap <silent> ab :call absorb#execute()<CR>
 
 
