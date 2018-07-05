@@ -456,10 +456,14 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "=== 显示 === 
 "buffer explorer
 Plug 'fholgado/minibufexpl.vim'
-	let g:miniBufExplBRSplit = 0
+    "不固定在屏幕边缘
 	let g:miniBufExplSplitToEdge = 0
-	let g:miniBufExplMaxSize = 1
-    let g:miniBufExplBuffersNeeded = 1
+    "在上方
+	let g:miniBufExplBRSplit = 0
+    "行数
+	let g:miniBufExplMaxSize = 2
+    "自动启动的buffer数量
+    let g:miniBufExplBuffersNeeded = 0
 
     "nmap <silent> tn :call absorb#backtoinner()<CR> :MBEbn<CR>
     "nmap <silent> tp :call absorb#backtoinner()<CR> :MBEbp<CR>
