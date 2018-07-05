@@ -468,10 +468,10 @@ Plug 'fholgado/minibufexpl.vim'
 
     nmap <silent> tn :call absorb#backtoinner()<CR> :bn<CR>
     nmap <silent> tp :call absorb#backtoinner()<CR> :bp<CR>
-    for nr in range(1,99)
+    for nr in range(1,19)
         execute 'nmap <silent> t'.nr.' :call absorb#backtoinner()<CR> :b '.nr.'<CR>'
     endfor
-    for nr in range(1,99)
+    for nr in range(1,19)
         execute 'nmap <silent> c'.nr.' :call absorb#backtoinner()<CR> :MBEbd '.nr.'<CR>'
     endfor
     map <silent> cb :bd<CR>
