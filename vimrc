@@ -464,9 +464,8 @@ Plug 'fholgado/minibufexpl.vim'
 	let g:miniBufExplMaxSize = 2
     "自动启动的buffer数量
     let g:miniBufExplBuffersNeeded = 0
+    nmap <silent> <leader>m :MBEToggle<CR>
 
-    "nmap <silent> tn :call absorb#backtoinner()<CR> :MBEbn<CR>
-    "nmap <silent> tp :call absorb#backtoinner()<CR> :MBEbp<CR>
     nmap <silent> tn :call absorb#backtoinner()<CR> :bn<CR>
     nmap <silent> tp :call absorb#backtoinner()<CR> :bp<CR>
     for nr in range(1,99)
