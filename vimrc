@@ -538,8 +538,8 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-"Plug 'ldengjie/vim-absorb'
-Plug '~/vim-absorb'
+Plug 'ldengjie/vim-absorb'
+"Plug '~/vim-absorb'
     let g:absorb_width = '80%'
     let g:absorb_height= '90%'
 
