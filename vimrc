@@ -301,7 +301,7 @@ Plug 'scrooloose/nerdtree'
     let NERDTreeMapOpenInTabSilent='\T'
     let NERDTreeMapToggleFilters='\f'
     let g:NERDTreeWinSize=30
-    nnoremap<silent>  <Leader>n :NERDTreeToggle <bar> call absorb#reSizeWin()<CR>  
+    nmap<silent> <Leader>n :NERDTreeToggle<CR>
 
 "nerdtree里显示git信息
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -345,7 +345,7 @@ Plug 'majutsushi/tagbar'
     let tagbar_map_togglesort='\s'
     let tagbar_map_jump='o'
     let tagbar_map_togglefold='O'
-    nnoremap<silent>  <Leader>t :call tagbar#ToggleWindow()<CR>:call absorb#reSizeWin()<CR>
+    nmap<silent>  <Leader>t :TagbarToggle<CR>
 
 "在本级目录和逐步查询上级目录中找tags，在保存的时候自动更新tags
 "Plug 'xolox/vim-misc'
