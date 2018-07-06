@@ -14,35 +14,30 @@
 
 "-- [c]lose --
 "cq 关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-"cw 关闭当前window
-"ct 关闭当前tabpage
-"co 关闭[airline上部buffer栏里]其他buffer
-"cr 关闭[airline上部buffer栏里]右侧buffer
-"cb 关闭[airline上部buffer栏里]当前buffer
-"c[1-9] 关闭[airline上部buffer栏里]第1-9个buffer
+"co 关闭其他buffer
+"cr 关闭右侧buffer
+"cb 关闭当前buffer
+"c[1-19] 关闭buffer
 
 "-- [d]elete --
 "dp 删除指定字符之间的字符
 "dl 删除指定行之间的行
 
 "-- [t]abs in buffers window --
-"tn [airline上部buffer栏里]下一个buffer
-"tp [airline上部buffer栏里]下一个buffer
-"t[1-9] [airline上部buffer栏里]跳转到第1-9个buffer
+"tn 下一个buffer
+"tp 下一个buffer
+"t[1-19] 跳转到第1-19个buffer
 
 "-- [g]oto --
 "ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
 "gd 选中并返回原位置
 "gf 跳转到变量的定义或声明处
-"gy 进入/离开 goyo 模式
-"gt 下一个tabpage
-"gT 上一个tabpage
 "gj 格式化json文件
 
 "-- [w]indow --
 "w <c-w>
 "wc 关闭当前的窗口,不能关闭最后一个窗口, 
-"wo 关闭当前窗口以外的所有窗口, [c*]依赖这个快捷键
+"wo 关闭当前窗口以外的所有窗口
 "wz 最大化当前窗口
 
 "-- [y]ank --
@@ -53,6 +48,7 @@
 ",f 搜索文件
 ",l Move to line
 ",s Move to char == s
+",m 打开minibufexplorer
 ",n 打开nerdtree
 ",t 打开tagbar
 ",w 强制保存文件
