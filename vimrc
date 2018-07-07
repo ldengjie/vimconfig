@@ -17,16 +17,17 @@
 "co 关闭其他buffer
 "cr 关闭右侧buffer
 "cb 关闭当前buffer
-"c[1-19] 关闭buffer
+"[count]cb 关闭指定buffer
 
 "-- [d]elete --
 "dp 删除指定字符之间的字符
 "dl 删除指定行之间的行
 
 "-- [t]abs in buffers window --
-"tn 下一个buffer
-"tp 下一个buffer
-"t[1-19] 跳转到第1-19个buffer
+"[count]t 跳转到指定buffer
+"t 跳转到前一个buffer
+"gT 上一个buffer
+"gt 下一个buffer
 
 "-- [g]oto --
 "ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
@@ -125,8 +126,8 @@ else
 endif
 
 "=== 功能控制=== 
-"与windows共享剪贴板
-"set clipboard+=unnamed
+"与系统共享剪贴板
+set clipboard+=unnamed
 "在离开 Insert 模式时自动切换至英文输入法
 set noimdisable 
 "关闭vim声音错误提示，打开后会屏幕发白闪烁
@@ -151,11 +152,19 @@ map <silent> w <c-w>
 nmap <silent> gd :normal! md gd `d<CR>
 "格式化json文件
 nmap <silent> gj :%!python -m json.tool<CR>
+"下一个buffer
+nmap gt :bn<cr>
+"上一个buffer
+nmap gT :bp<cr>
+"[count] t: 跳转到指定buffer, [count]空时:前一个
+nmap <expr>  t ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
+"[count] cb: 删除指定buffer, [count]空时:删除当前buffer 
+nmap <expr>  cb ':<c-u>bd '.(v:count==0 ? "" : v:count).'<cr>'
 
 "-- , --
 let mapleader = "," 
 "关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap <silent> cq :cclose<CR>:call absorb#reSizeWin()<CR>
+nmap <silent> cq :cclose<CR>
 "强制保存文件
 nnoremap <silent> <leader>w :w!<CR>
 
@@ -369,7 +378,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
     let g:ycm_seed_identifiers_with_syntax=1   
     "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
-	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+	"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+    let g:ycm_autoclose_preview_window_after_completion=1
 
     "语义补全 Semantic Completion: C-family, C#, Go, Java, JavaScript, Python, Rust, and TypeScript languages are supported natively by YouCompleteMe using the Clang, OmniSharp, Gocode/Godef, jdt.ls, Tern, Jedi, racer, and TSServer engines, respectively (2018.06.29). 
     "C 想全局使用,在~/.ycm_extra_conf.py加入你的库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.如果有使用构建工具的话,github上有一个叫YCM-Generator的插件,可以根据构建工具自动生成.ycm_extra_conf.py文件.
@@ -462,51 +472,6 @@ Plug 'fholgado/minibufexpl.vim'
     let g:miniBufExplBuffersNeeded = 2
     nmap <silent> <leader>m :MBEToggle<CR>
 
-    nmap <silent> tn :call absorb#backtoinner()<CR> :bn<CR>
-    nmap <silent> tp :call absorb#backtoinner()<CR> :bp<CR>
-    for nr in range(1,19)
-        execute 'nmap <silent> t'.nr.' :call absorb#backtoinner()<CR> :b '.nr.'<CR>'
-    endfor
-    for nr in range(1,19)
-        execute 'nmap <silent> c'.nr.' :call absorb#backtoinner()<CR> :MBEbd '.nr.'<CR>'
-    endfor
-    map <silent> cb :bd<CR>
-    "close buffer
-    map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
-    map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
-
-    "删除所有其他buffer co
-    fun! DeleteAllOtherBuffersInWindow()
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        exe "bn"
-        let l:lastBufNr = bufnr("%")
-        while l:lastBufNr != l:curBufNr
-            exe "bn"
-            exe "bdel ".l:lastBufNr
-            let l:lastBufNr = bufnr("%")
-        endwhile
-    endfun
-    "删除所有右边buffer cr
-    fun! DeleteAllRightBuffersInWindow()
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        exe "bn"
-        let l:lastBufNr = bufnr("%")
-        while l:lastBufNr > l:curBufNr
-            exe "bn"
-            exe "bdel ".l:lastBufNr
-            let l:lastBufNr = bufnr("%")
-        endwhile
-        exe "b ".l:curBufNr
-    endfun
-
 Plug 'vim-airline/vim-airline-themes'
 	let g:airline_theme="papercolor" 
 
@@ -538,7 +503,7 @@ Plug 'luochen1990/rainbow'
 
 "关灯看小说
 Plug 'ldengjie/vim-absorb'
-"Plug '~/vim-absorb'
+"Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width = '80%'
     let g:absorb_height= '90%'
 
@@ -579,10 +544,46 @@ Plug 'ianva/vim-youdao-translater'
     "翻译当前单词
     vnoremap <silent> <c-y> :<c-u>Ydv<CR>
     nnoremap <silent> <c-y> :<c-u>Ydc<CR>
-    "翻译输入的单词
-    "noremap <silent> <leader>yd :<c-u>Yde<CR>
+    ""翻译输入的单词
+    ""noremap <silent> <leader>yd :<c-u>Yde<CR>
 
 call plug#end()
+
+"=== user function ===
+
+"删除所有其他buffer co
+map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
+"删除所有右边buffer cr
+map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
+    fun! DeleteAllOtherBuffersInWindow()
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:curBufNr = bufnr("%")
+        exe "bn"
+        let l:lastBufNr = bufnr("%")
+        while l:lastBufNr != l:curBufNr
+            exe "bn"
+            exe "bdel ".l:lastBufNr
+            let l:lastBufNr = bufnr("%")
+        endwhile
+    endfun
+    fun! DeleteAllRightBuffersInWindow()
+        let l:curWinNr = winnr()
+        if winbufnr(l:curWinNr) == 1
+            return
+        endif
+        let l:curBufNr = bufnr("%")
+        exe "bn"
+        let l:lastBufNr = bufnr("%")
+        while l:lastBufNr > l:curBufNr
+            exe "bn"
+            exe "bdel ".l:lastBufNr
+            let l:lastBufNr = bufnr("%")
+        endwhile
+        exe "b ".l:curBufNr
+    endfun
 
 "=== init ===
 autocmd VimEnter * call absorb#execute()
