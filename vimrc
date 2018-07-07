@@ -586,6 +586,7 @@ map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
     endfun
 
 "=== init ===
+autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
 autocmd VimEnter * call absorb#execute()
 
 "nmap <silent> ab :call absorb#execute()<CR>

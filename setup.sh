@@ -37,12 +37,17 @@ cd ~/.vim/vim
 
 sudo apt-get -y install libncurses5-dev
 
-# 需要保证编译vim看到的或指定的python Library和编译ycm时看到的python/python-config是同一套，且python是一个可执行文件.详见 http://bc28335b.wiz03.com/share/s/2Ya3dr0qkABL2n0eR71ISkyG0fl6W-389A5l2n46HL3jUW39
+# 需要确保编译vim看到的或指定的python Library和编译ycm时看到的python/python-config是同一套，且python是一个可执行文件。这里使用系统自带python2.7:
+#$ which python
+#/usr/bin/python
+#$ which python-config
+#/usr/bin/python
+#编译ycm时,确保正确的library, ~/.vim/plugged/YouCompleteMe/
+#$ ./install.py --clang-completer --java-completer
+#Searching Python 2.7 libraries...
+#Found Python library: /usr/lib/python2.7/config-x86_64-linux-gnu/libpython2.7.so
 
-# [ubuntu16.04] 需要配置python2/3路径
-./configure --with-features=huge --enable-python3interp --enable-pythoninterp --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ --enable-rubyinterp --enable-luainterp --enable-perlinterp --with-python3-config-dir=/home/sugon/anaconda3/lib/python3.6/config-3.6m-x86_64-linux-gnu --enable-multibyte --enable-cscope
-# [mac] 
-#./configure --with-features=huge --enable-python2interp --enable-rubyinterp --enable-luainterp --enable-perlinterp --enable-multibyte --enable-cscope
+./configure --with-features=huge --enable-pythoninterp --enable-rubyinterp --enable-luainterp --enable-perlinterp --enable-multibyte --enable-cscope
 
 make && sudo make install
 
@@ -50,14 +55,21 @@ ln -s ~/.vim/vimrc ~/.vimrc
 
 cd ~/.vim/plugged/
 
-# ycm
+vim -c 'PlugInstall' -c 'qall'
+
+# 上述命令下载安装ycm时, 若出错,设置参数自行下载:
 #git config --global http.postBuffer 1024288000
 #git clone --depth 1 --recursive https://github.com/Valloric/YouCompleteMe.git
 #cd YouCompleteMe
 #sudo apt-get -y install build-essential cmake
-#./install.py --all
+#./install.py --clang-completer --java-completer
 
-vim -c 'PlugInstall' -c 'qall'
+
+# 编译完成后，也需要确保vim里看到的是系统自带python2.7,否则系统路径里若python=python3,导致python2插件不起作用.需要在.vimrc里添加:
+#autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
+#启动vim后显示：
+#:python import sys; print sys.executable
+#/usr/bin/python
 
 #rm -rf ~/.vim/vim
 
