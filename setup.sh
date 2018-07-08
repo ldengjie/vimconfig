@@ -35,8 +35,6 @@ cd ~/.vim/vim
 
 # 修改 src/screen.c, 替换 ~ ^ 为空格
 
-sudo apt-get -y install libncurses5-dev
-
 # 需要确保编译vim看到的或指定的python Library和编译ycm时看到的python/python-config是同一套，且python是一个可执行文件。这里使用系统自带python2.7:
 #$ which python
 #/usr/bin/python
@@ -46,6 +44,8 @@ sudo apt-get -y install libncurses5-dev
 #$ ./install.py --clang-completer --java-completer
 #Searching Python 2.7 libraries...
 #Found Python library: /usr/lib/python2.7/config-x86_64-linux-gnu/libpython2.7.so
+
+sudo apt-get -y install libncurses5-dev
 
 ./configure --with-features=huge --enable-pythoninterp --enable-rubyinterp --enable-luainterp --enable-perlinterp --enable-multibyte --enable-cscope
 
@@ -71,6 +71,9 @@ vim -c 'PlugInstall' -c 'qall'
 #启动vim后显示：
 #:python import sys; print sys.executable
 #/usr/bin/python
+
+# 安装clang 以支持 c-family 语义补全
+sudo apt-get -y install clang
 
 #rm -rf ~/.vim/vim
 
