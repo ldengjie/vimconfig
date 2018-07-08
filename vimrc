@@ -60,6 +60,7 @@
 "<c-j> 自动扩展输入
 "<c-n> 下拉菜单里下一个
 "<c-p> 下拉菜单里上一个
+"<c-l> 显示当前行数/总行数
 
 "==== SCRIPT ====
 
@@ -158,13 +159,19 @@ nmap gt :bn<cr>
 nmap gT :bp<cr>
 "[count] t: 跳转到指定buffer, [count]空时:前一个
 nmap <expr>  t ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
+
+"-- [c]lose --
 "[count] cb: 删除指定buffer, [count]空时:删除当前buffer 
 nmap <expr>  cb ':<c-u>bd '.(v:count==0 ? "" : v:count).'<cr>'
+"关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
+nmap <silent> cq :cclose<CR>
+
+"-- <c-*> --
+"显示当前行数/总行数
+map  <c-l> :echo line('.').' / '.line('$')<CR>
 
 "-- , --
 let mapleader = "," 
-"关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap <silent> cq :cclose<CR>
 "强制保存文件
 nnoremap <silent> <leader>w :w!<CR>
 
@@ -186,6 +193,7 @@ Plug 'Lokaltog/vim-easymotion'
     " <Leader>f{char} to move to {char}
     map <silent> s <Plug>(easymotion-bd-f)
     nmap <silent> s <Plug>(easymotion-overwin-f)
+    nmap <silent> / <Plug>(easymotion-sn)
     " Move to line
     map <silent> <leader>l <Plug>(easymotion-bd-jk)
     nmap <silent> <leader>l <Plug>(easymotion-overwin-line)
@@ -245,14 +253,6 @@ Plug 'tpope/vim-surround'
 "括号补齐
 Plug 'Raimondi/delimitMate'
     "syntax awareness (will not insert the closing delimiter in comments and other configurable regions)，输入时想把光标移动到｝后继续输入时，C-o进入normal模式，再a。   
-    
-"tab键补齐
-"Plug 'ervandew/supertab'
-    "let g:SuperTabRetainCompletionType = 2
-    "" 0 - 不记录上次的补全方式
-    "" 1 - 记住上次的补全方式,直到用其他的补全命令改变它
-    "" 2 - 记住上次的补全方式,直到按ESC退出插入模式为止
-    "let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
     
 "添加模块代码扩展
 Plug 'SirVer/ultisnips'
@@ -362,6 +362,9 @@ Plug 'majutsushi/tagbar'
     "let g:shell_fullscreen_items='mT'
     "let g:shell_fullscreen_message=0
 
+"生成 ycm c-family 语义补全时需要的 .ycm_extra_conf.py 文件, C 想全局使用,在~/.ycm_extra_conf.py加入自定义库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+    ":YcmGenerateConfig
 "自动补全
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
     " 从第一个键入字符就开始列出匹配项  
@@ -382,7 +385,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     let g:ycm_autoclose_preview_window_after_completion=1
 
     "语义补全 Semantic Completion: C-family, C#, Go, Java, JavaScript, Python, Rust, and TypeScript languages are supported natively by YouCompleteMe using the Clang, OmniSharp, Gocode/Godef, jdt.ls, Tern, Jedi, racer, and TSServer engines, respectively (2018.06.29). 
-    "C 想全局使用,在~/.ycm_extra_conf.py加入你的库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.如果有使用构建工具的话,github上有一个叫YCM-Generator的插件,可以根据构建工具自动生成.ycm_extra_conf.py文件.
     "for javascript的补全: 已集成tern(~/.tern-project),默认自动安装调用。(2017.05.30)
     "触发语义补全
     let g:ycm_key_invoke_completion = "<c-g>"
@@ -407,38 +409,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     nnoremap <silent> gf :YcmCompleter GoToDefinitionElseDeclaration<CR>
     "nnoremap <silent> <leader>jl :YcmCompleter GoToDeclaration<CR>
     "nnoremap <silent> <leader>jf :YcmCompleter GoToDefinition<CR>
-
-    "eclim
-    "let g:EclimCompletionMethod = 'omnifunc'
-    "关闭eclimd自带的语法错误检查
-    "let g:EclimJavaValidate=0
-    "let g:EclimScalaValidate=0
-    "通过eclim实现定义跳转
-    "autocmd FileType java nnoremap <silent> <leader>jsd :JavaSearch<CR>
-    "autocmd FileType java nnoremap <silent> <leader>d :normal gd ,jsd zz<CR>
-    "autocmd FileType java nnoremap <silent> <leader>i :JavaImport<CR>
-    "autocmd FileType java nnoremap <silent> <leader>o :JavaImportOrganize<CR>
-    "autocmd FileType scala nnoremap <silent> <leader>csd :ScalaSearch<CR>
-    "autocmd FileType scala nnoremap <silent> <leader>d :normal gd ,csd zz<CR>
-    "autocmd FileType scala nnoremap <silent> <leader>i :ScalaImport<CR>
-
-""代码异步检测:拼写错误,语法错误。实时检测，并发运行。for javascript,手动安装eslint后,自动调用eslint(~/.eslint.json)
-"Plug 'w0rp/ale'
-    ""0)不能使用tagbar 1)javac.vim中修改pom.xml为pxm.xml,因为项目太大，mvn dependency:build-classpath分"析出的classpath太多，导致javac编译很慢，10-20S. 2)mvn shade 插件打包后的jar引入到classpath里，如下:
-    ""2018.05.15 semantic analysis has been done for the javac linter to look for dependencies with maven and gradle.
-    "let g:ale_java_javac_classpath='/Users/lidj/Documents/大数据项目/项目测试/乌鲁木齐高新区深度学习超算/项目研发/XJGASugonBigData/backend/target/xjga.jar'
-    ""let g:ale_java_javac_classpath='/Users/lidj/Documents/大数据项目/项目测试/乌鲁木齐高新区深度学习超算/项目研发/XJGASugonBigData/algorithm/xjcs-assembly-2.0.jar'
-    ""2018.05.15 the scalac linter only checks syntax, it doesn't do any semantic analysis. https://github.com/w0rp/ale/issues/815
-    "let g:ale_linters = {'scala': ['scalastyle']}
-    ""let g:airline#extensions#ale#enabled = 1
-    ""let g:airline#extensions#ale#error_symbol='✗'
-    ""let g:airline#extensions#ale#warning_symbol='⚠'
-    "let g:ale_lint_delay=50
-    "let g:ale_sign_error='✗'
-    "let g:ale_sign_warning='⚠'
-    "nmap <silent> <c-k> <Plug>(ale_previous_wrap)
-    "nmap <silent> <c-j> <Plug>(ale_next_wrap)
-    ""另:syntastic是代码风格检查工具,可以为不同的编程语言(对应为Vim中的filetype)配置不同的checker.甚至每个文件类型可以有若干个checker，syntastic会负责聚合警告和错误。只在保存文件时检查，不是实时的。for javascript，手动安装eslint后，调用eslint
     
 "调试
 "GDB LLDB JDB Mdbg PDB RDebug. Vebugger is developed under Linux. It doesn't work properly under Windows due to lack of PTY support. I have neither plans nor means to support OSX. (2018.06.29)
@@ -504,7 +474,7 @@ Plug 'luochen1990/rainbow'
 "关灯看小说
 Plug 'ldengjie/vim-absorb'
 "Plug '~/Documents/workspace/vim-absorb'
-    let g:absorb_width = '80%'
+    let g:absorb_width = '65%'
     let g:absorb_height= '90%'
 
 

@@ -60,6 +60,7 @@ vim -c 'PlugInstall' -c 'qall'
 # 上述命令下载安装ycm时, 若出错,设置参数自行下载:
 #git config --global http.postBuffer 1024288000
 #git clone --depth 1 --recursive https://github.com/Valloric/YouCompleteMe.git
+#git submodule update --init --recursive
 #cd YouCompleteMe
 #sudo apt-get -y install build-essential cmake
 #./install.py --clang-completer --java-completer
