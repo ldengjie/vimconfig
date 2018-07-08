@@ -54,6 +54,7 @@
 ",t 打开tagbar
 ",w 强制保存文件
 ",y 打开粘贴板
+",i YCM-Generator为c-family项目生成配置文件
 
 "<c-y> 翻译当前单词
 "<c-g> 语义补齐
@@ -364,7 +365,7 @@ Plug 'majutsushi/tagbar'
 
 "生成 ycm c-family 语义补全时需要的 .ycm_extra_conf.py 文件, C 想全局使用,在~/.ycm_extra_conf.py加入自定义库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-    ":YcmGenerateConfig
+    nmap  <Leader>ip :YcmGenerateConfig<CR>
 "自动补全
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
     " 从第一个键入字符就开始列出匹配项  
