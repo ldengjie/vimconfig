@@ -154,10 +154,6 @@ map <silent> w <c-w>
 nmap <silent> gd :normal! md gd `d<CR>
 "格式化json文件
 nmap <silent> gj :%!python -m json.tool<CR>
-"下一个buffer
-nmap gt :bn<cr>
-"上一个buffer
-nmap gT :bp<cr>
 "[count] t: 跳转到指定buffer, [count]空时:前一个
 nmap <expr>  t ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
 
@@ -442,6 +438,10 @@ Plug 'fholgado/minibufexpl.vim'
     "自动启动的buffer数量
     let g:miniBufExplBuffersNeeded = 2
     nmap <silent> <leader>m :MBEToggle<CR>
+    "下一个buffer
+    nmap gt :MBEbn<cr>
+    "上一个buffer
+    nmap gT :MBEbp<cr>
 
 Plug 'vim-airline/vim-airline-themes'
 	let g:airline_theme="papercolor" 
