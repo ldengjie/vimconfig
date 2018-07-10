@@ -472,8 +472,8 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-"Plug 'ldengjie/vim-absorb'
-Plug '~/Documents/workspace/vim-absorb'
+Plug 'ldengjie/vim-absorb'
+"Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width = '65%'
     let g:absorb_height= '90%'
     autocmd VimEnter * call absorb#execute()
