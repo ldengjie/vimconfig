@@ -336,8 +336,7 @@ Plug 'rking/ag.vim'
     " q    close the quickfix window.
     " If [!] is not given the first error is jumped to.
     command! Agg exe 'Ag! -Q -s -w ' . expand('<cword>') . ' --ignore-dir node_modules --ignore-dir dist'
-    noremap <silent> <leader>Agg :Agg<CR>
-    noremap <silent> <leader>a :normal gd ,Agg<CR>
+    noremap <silent> <leader>a :normal! gd <CR> :Agg<CR>
 
 "文档class分析
 Plug 'majutsushi/tagbar'
@@ -473,10 +472,11 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-Plug 'ldengjie/vim-absorb'
-"Plug '~/Documents/workspace/vim-absorb'
+"Plug 'ldengjie/vim-absorb'
+Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width = '65%'
     let g:absorb_height= '90%'
+    autocmd VimEnter * call absorb#execute()
 
 
 "主题配色
@@ -557,9 +557,5 @@ map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
     endfun
 
 "=== init ===
+"发现python2
 autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
-autocmd VimEnter * call absorb#execute()
-
-"nmap <silent> ab :call absorb#execute()<CR>
-
-
