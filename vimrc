@@ -376,8 +376,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     "let g:ycm_collect_identifiers_from_tags_files = 1
     "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
     let g:ycm_seed_identifiers_with_syntax=1   
-    "当tab补全时vim上面会分裂一个小窗口显示函数变量原型，我们按下esc或者结束补全时,自动关闭那个窗口
-	"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
     let g:ycm_autoclose_preview_window_after_completion=1
 
     "语义补全 Semantic Completion: C-family, C#, Go, Java, JavaScript, Python, Rust, and TypeScript languages are supported natively by YouCompleteMe using the Clang, OmniSharp, Gocode/Godef, jdt.ls, Tern, Jedi, racer, and TSServer engines, respectively (2018.06.29). 
@@ -403,6 +401,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
 
     "代码跳转: C 前提是设置好.ycm_extra_conf.py
     nnoremap <silent> gf :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    let g:ycm_goto_buffer_command = 'vertical-split'
     "nnoremap <silent> <leader>jl :YcmCompleter GoToDeclaration<CR>
     "nnoremap <silent> <leader>jf :YcmCompleter GoToDefinition<CR>
     
@@ -502,6 +501,8 @@ Plug 'Yggdroot/indentLine'
 "Yggdroot/indentLine会隐藏json里的",禁止json里隐藏引号，但md里还是隐藏#
 Plug 'elzr/vim-json'
     let g:vim_json_syntax_conceal = 0
+"show help documentation
+nnoremap <buffer> gh :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
 "=== 其他功能 === 
 "全部剪切板
@@ -559,3 +560,4 @@ map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
 "=== init ===
 "发现python2
 autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
+cd ~/Documents/workspace/deeplearning
