@@ -108,7 +108,8 @@ function! Setbg()
     if has("gui_running")
         set background=light
     else
-        set background=dark
+        "set background=dark
+        set background=light
     endif
 endfunction
 
@@ -360,7 +361,7 @@ Plug 'majutsushi/tagbar'
 
 "生成 ycm c-family 语义补全时需要的 .ycm_extra_conf.py 文件, C 想全局使用,在~/.ycm_extra_conf.py加入自定义库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-    nmap  <Leader>ip :YcmGenerateConfig<CR>
+    nmap  <Leader>i :YcmGenerateConfig<CR>
 "自动补全
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
     " 从第一个键入字符就开始列出匹配项  
@@ -384,6 +385,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-co
     let g:ycm_key_invoke_completion = "<c-g>"
     "语义补全候选数目，默认50
     "let g:ycm_max_num_candidates = 50
+    "取消提醒确认
+    let g:ycm_confirm_extra_conf = 0
     "自动触发语义补全,scala时比较慢1-2s
     "let g:ycm_semantic_triggers =  {
   "\   'c' : ['->', '.'],
@@ -471,8 +474,8 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-Plug 'ldengjie/vim-absorb'
-"Plug '~/Documents/workspace/vim-absorb'
+"Plug 'ldengjie/vim-absorb'
+Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width = '65%'
     let g:absorb_height= '90%'
     autocmd VimEnter * call absorb#execute()
@@ -560,4 +563,4 @@ map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
 "=== init ===
 "发现python2
 autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
-cd ~/Documents/workspace/deeplearning
+"cd ~/Documents/workspace/deeplearning
