@@ -13,7 +13,6 @@
 "cy 先复制, 再注解(p可以进行黏贴)
 
 "-- [c]lose --
-"cq 关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
 "co 关闭其他buffer
 "cr 关闭右侧buffer
 "cb 关闭当前buffer
@@ -46,6 +45,7 @@
 "yl 复制指定行之间的行
 
 ",a 搜索单词
+",q 关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
 ",f 搜索文件
 ",l Move to line
 ",s Move to char == s
@@ -161,8 +161,6 @@ nmap <expr>  t ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
 "-- [c]lose --
 "[count] cb: 删除指定buffer, [count]空时:删除当前buffer 
 nmap <expr>  cb ':<c-u>bd '.(v:count==0 ? "" : v:count).'<cr>'
-"关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-nmap <silent> cq :cclose<CR>
 
 "-- <c-*> --
 "显示当前行数/总行数
@@ -172,6 +170,8 @@ map  <c-l> :echo line('.').' / '.line('$')<CR>
 let mapleader = "," 
 "强制保存文件
 nnoremap <silent> <leader>w :w!<CR>
+"关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
+nmap <silent> <leader>q :cclose<CR>
 
 "=== vim-plug === 
 filetype plugin indent on

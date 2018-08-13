@@ -14,7 +14,6 @@
 **cy **先复制, 再注解(p可以进行黏贴)
 
 "-- [c]lose --
-**cq **关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
 **co **关闭其他buffer
 **cr **关闭右侧buffer
 **cb **关闭当前buffer
@@ -47,6 +46,7 @@
 **yl **复制指定行之间的行
 
 **,a **搜索单词
+**,q **关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
 **,f **搜索文件
 **,l **Move to line
 **,s **Move to char == s
