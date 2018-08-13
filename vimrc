@@ -84,8 +84,8 @@ endif
 
 "语法高亮
 syntax on
-"显示行号
-set nu
+"显示行号,由vim-absorb进行控制
+"set nu
 "光亮光标行
 set cursorline
 "光标的上方或下方至少会保留显示的行数
@@ -474,10 +474,11 @@ Plug 'luochen1990/rainbow'
     \}
 
 "关灯看小说
-"Plug 'ldengjie/vim-absorb'
-Plug '~/Documents/workspace/vim-absorb'
+Plug 'ldengjie/vim-absorb'
+"Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width = '65%'
     let g:absorb_height= '90%'
+    let g:absorb_hidelinenr= 1
     autocmd VimEnter * call absorb#execute()
 
 
