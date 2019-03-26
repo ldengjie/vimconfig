@@ -142,6 +142,8 @@ set hidden
 "自动关闭时保存折叠，打开时读出折叠
 au BufWinLeave *.* silent mkview
 au BufWinEnter *.* silent loadview
+"自动保存
+"let autosave=1
 
 "=== 快捷键=== 
 nmap <silent> f <c-f>
@@ -509,6 +511,13 @@ Plug 'elzr/vim-json'
 nnoremap <buffer> gh :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
 "=== 其他功能 === 
+"作者信息
+Plug 'vim-scripts/AuthorInfo'
+    let g:vimrc_author='LiDengjie'
+    let g:vimrc_email='ldengjie@163.com'
+	let g:vimrc_homepage=''
+    nmap <leader>ia :AuthorInfoDetect<CR>
+
 "全部剪切板
 Plug 'vim-scripts/YankRing.vim'
     "将yankring的历史文件夹移到~/.vim
