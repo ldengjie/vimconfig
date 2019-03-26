@@ -67,6 +67,10 @@
 # Installation   
 
 ## ubuntu16.04  
+mv vimconfig ~/.vim  
+
+cd ~/.vim  
+
 sudo sh setup.sh  
 
 ### Tips:  
@@ -86,15 +90,3 @@ configure for compile vim:
 > --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu/ 指定python 路径  
 > --with-python-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu/ 指定python3路径  
 > --prefix=/usr/local/vim：指定将要安装到的路径(自行创建)  
-
-Q: Tagbar: Exuberant ctags not found  
-A: sudo apt-get install ctags  
-
-ubuntu16.04 编译vim时:  
-Q: You need to install a terminal library  
-A: sudo apt-get install libncurses5-dev  
-
-ubuntu16.04 git clone ycm时:  
-Q: RPC failed; curl 18 transfer closed with outstanding read data remaining  
-A: git config --global http.postBuffer 524288000  
-

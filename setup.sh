@@ -60,7 +60,7 @@ sudo cp -rf sys/pip.conf /etc/pip.conf
 apt-get update
 #安装3.6
 apt-get install -y software-properties-common
-add-apt-repository ppa:deadsnakes/ppa
+add-apt-repository -y ppa:deadsnakes/ppa
 apt-get update
 apt-get install -y python3.6 python3.6-dev
 python3.6 sys/get-pip.py
@@ -69,7 +69,7 @@ ln -s /usr/bin/python3.6-config /usr/local/bin/python3-config
 which python3
 which python3-config
 #安装python-config
-apt install python-dev
+apt-get install -y python-dev
 which python
 which python-config
 
@@ -77,16 +77,11 @@ apt-get install -y git curl
 
 get clone --depth=1 https://github.com/ldengjie/vimconfig.git
 
-cd vimconfig
+#cd vimconfig
 #mkdir ~/.vim
 
-# zsh:
-apt-get install -y zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-cp -rf sys/zshrc ~/.zshrc
-
 # tmux:
-sudo apt-get -y install tmux
+sudo apt-get install -y tmux
 cp -rf sys/tmux.conf ~/.tmux.conf
 
 # eclim:
@@ -162,3 +157,8 @@ vim -c 'PlugInstall' -c 'qall'
 
 ln -s /usr/bin/python3.6 /usr/local/bin/python
 ln -s /usr/bin/python3.6-config /usr/local/bin/python-config
+
+# zsh:
+apt-get install -y zsh
+cp -rf sys/zshrc ~/.zshrc
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
