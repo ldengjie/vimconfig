@@ -82,6 +82,8 @@ if has("gui_running")
     colorscheme solarized
 endif
 
+"set fillchars=stl:\ ,stlnc:\
+
 "语法高亮
 syntax on
 "显示行号,由vim-absorb进行控制
@@ -134,7 +136,7 @@ set clipboard+=unnamed
 "在离开 Insert 模式时自动切换至英文输入法
 set noimdisable 
 "关闭vim声音错误提示，打开后会屏幕发白闪烁
-"set vb t_vb=
+set vb t_vb=
 "buffer未保存也可以切换
 set hidden
 
@@ -478,11 +480,11 @@ Plug 'luochen1990/rainbow'
 "关灯看小说
 Plug 'ldengjie/vim-absorb'
 "Plug '~/Documents/workspace/vim-absorb'
-    let g:absorb_width = '65%'
-    let g:absorb_height= '90%'
-    let g:absorb_hidelinenr= 1
-    autocmd VimEnter * call absorb#execute()
-
+    let g:absorb_width      = '70%'
+    let g:absorb_height     = '90%'
+    let g:absorb_hidelinenr = 0
+    "默认不启用
+    let g:absorb_open       = 1
 
 "主题配色
 Plug 'altercation/vim-colors-solarized'
@@ -571,6 +573,3 @@ map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
     endfun
 
 "=== init ===
-"发现python2
-autocmd VimEnter * let $PATH='/usr/bin:'.$PATH
-"cd ~/Documents/workspace/deeplearning
