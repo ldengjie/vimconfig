@@ -1,68 +1,69 @@
 
 # Shortcuts  
 
-**b **向上翻页
-**f **向下翻页
-**K **上移一行 == k
-**s **单字符跳转
-**v **自动扩展选择连接着的区域
-
-"-- [c]omment --
-**cc **加注释
-**cu **解开注释
-**c\<space\> **加上/解开注释, 智能判断
-**cy **先复制, 再注解(p可以进行黏贴)
-
-"-- [c]lose --
-**co **关闭其他buffer
-**cr **关闭右侧buffer
-**cb **关闭当前buffer
-**[count]cb **关闭指定buffer
-
-"-- [d]elete --
-**dp **删除指定字符之间的字符
-**dl **删除指定行之间的行
-
-"-- [t]abs in buffers window --
-**[count]t **跳转到指定buffer
-**t **跳转到前一个buffer
-**gT **上一个buffer
-**gt **下一个buffer
-
-"-- [g]oto --
-**ga **根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
-**gd **选中并返回原位置
-**gf **跳转到变量的定义或声明处
-**gj **格式化json文件
-
-"-- [w]indow --
-**w **\<c-w\>
-**wc **关闭当前的窗口,不能关闭最后一个窗口, 
-**wo **关闭当前窗口以外的所有窗口
-**wz **最大化当前窗口
-
-"-- [y]ank --
-**yp **复制指定字符之间的字符
-**yl **复制指定行之间的行
-
-**,a **搜索单词
-**,q **关闭底部窗口，并从 nerdtree or tagbar 返回主窗口
-**,f **搜索文件
-**,l **Move to line
-**,s **Move to char == s
-**,m **打开minibufexplorer
-**,n **打开nerdtree
-**,t **打开tagbar
-**,w **强制保存文件
-**,y **打开粘贴板
-**,i **YCM-Generator为c-family项目生成配置文件
-
-**\<c-y\>** 翻译当前单词  
-**\<c-g\>** 语义补齐  
-**\<c-j\>** 自动扩展输入  
-**\<c-n\>** 下拉菜单里下一个  
-**\<c-p\>** 下拉菜单里上一个  
-**\<c-l\>** 显示当前行数/总行数
+b 向上翻页  
+f 向下翻页  
+K 上移一行 == k  
+s 单字符跳转  
+v 自动扩展选择连接着的区域  
+  
+-- [c]omment --  
+cc 加注释  
+cu 解开注释  
+c<space> 加上/解开注释, 智能判断  
+cy 先复制, 再注解(p可以进行黏贴)  
+  
+-- [c]lose --  
+co 关闭其他buffer  
+cr 关闭右侧buffer  
+cb 关闭当前buffer  
+[count]cb 关闭指定buffer  
+  
+-- [d]elete --  
+dp 删除指定字符之间的字符  
+dl 删除指定行之间的行  
+  
+-- [t]abs in buffers window --  
+[count]t 跳转到指定buffer  
+t 跳转到前一个buffer  
+gT 上一个buffer  
+gt 下一个buffer  
+  
+-- [g]oto --  
+ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]  
+gd 选中并返回原位置  
+gf 跳转到变量的定义或声明处  
+gj 格式化json文件  
+  
+-- [w]indow --  
+w <c-w>  
+wc 关闭当前的窗口,不能关闭最后一个窗口,   
+wo 关闭当前窗口以外的所有窗口  
+wz 最大化当前窗口  
+  
+-- [y]ank --  
+yp 复制指定字符之间的字符  
+yl 复制指定行之间的行  
+  
+,a 搜索单词  
+,q 关闭底部窗口，并从 nerdtree or tagbar 返回主窗口  
+,f 搜索文件  
+,l Move to line  
+,s Move to char == s  
+,m 打开minibufexplorer  
+,n 打开nerdtree  
+,t 打开tagbar  
+,w 强制保存文件  
+,y 打开粘贴板  
+,c YCM-Generator为c-family项目生成配置文件  
+,h 在header添加作者信息  
+  
+\<c-y\> 翻译当前单词  
+\<c-g\> 语义补齐  
+\<c-j\> 自动扩展输入  
+\<c-n\> 下拉菜单里下一个  
+\<c-p\> 下拉菜单里上一个  
+\<c-l\> 显示当前行数/总行数  
 
 # Installation   
 

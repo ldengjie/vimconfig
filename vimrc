@@ -54,7 +54,8 @@
 ",t 打开tagbar
 ",w 强制保存文件
 ",y 打开粘贴板
-",i YCM-Generator为c-family项目生成配置文件
+",c YCM-Generator为c-family项目生成配置文件
+",h 在header添加作者信息
 
 "<c-y> 翻译当前单词
 "<c-g> 语义补齐
@@ -365,7 +366,7 @@ Plug 'majutsushi/tagbar'
 
 "生成 ycm c-family 语义补全时需要的 .ycm_extra_conf.py 文件, C 想全局使用,在~/.ycm_extra_conf.py加入自定义库的header,例如-F/path/to/include,只想在当前目录临时使用的话就在当前目录另开一个.ycm_extra_conf.py就好了.
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-    nmap  <Leader>i :YcmGenerateConfig<CR>
+    nmap  <Leader>c :YcmGenerateConfig<CR>
 "自动补全
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
     " 从第一个键入字符就开始列出匹配项  
@@ -518,7 +519,7 @@ Plug 'alpertuna/vim-header'
     let g:header_field_author = 'LiDengjie'
     let g:header_field_author_email = 'ldengjie@163.com'
     let g:header_auto_add_header = 0
-    nmap <leader>ia :AddHeader<CR>
+    nmap <leader>h :AddHeader<CR>
 
 "全部剪切板
 Plug 'vim-scripts/YankRing.vim'
