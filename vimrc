@@ -82,6 +82,7 @@ if has("gui_running")
     set showtabline=0 " 隐藏Tab栏
     set guifont=courier_new:h14
     colorscheme solarized
+    let g:absorb_open       = 0
 endif
 
 "语法高亮
@@ -485,8 +486,8 @@ Plug 'ldengjie/vim-absorb'
     let g:absorb_width      = '70%'
     let g:absorb_height     = '90%'
     let g:absorb_showlinenr = 1
-    "默认不启用
-    let g:absorb_open       = 1
+    "默认启用
+    "let g:absorb_open       = 0
 
 "主题配色
 Plug 'altercation/vim-colors-solarized'
