@@ -7,3 +7,4 @@ ycm*
 vim/
 bakcup/
 oh-my-zsh/
+*.log

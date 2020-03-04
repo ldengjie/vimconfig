@@ -514,11 +514,11 @@ nnoremap <buffer> gh :<C-u>execute "!pydoc " . expand("<cword>")<CR>
 
 "=== 其他功能 === 
 "作者信息
-Plug 'vim-scripts/AuthorInfo'
-    let g:vimrc_author='LiDengjie'
-    let g:vimrc_email='ldengjie@163.com'
-	let g:vimrc_homepage=''
-    nmap <leader>ia :AuthorInfoDetect<CR>
+Plug 'alpertuna/vim-header'
+    let g:header_field_author = 'LiDengjie'
+    let g:header_field_author_email = 'ldengjie@163.com'
+    let g:header_auto_add_header = 0
+    nmap <leader>ia :AddHeader<CR>
 
 "全部剪切板
 Plug 'vim-scripts/YankRing.vim'
