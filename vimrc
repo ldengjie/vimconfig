@@ -447,6 +447,8 @@ Plug 'fholgado/minibufexpl.vim'
     nmap gt :MBEbn<cr>
     "上一个buffer
     nmap gT :MBEbp<cr>
+    " 当前buffer颜色
+    hi MBEVisibleActiveNormal ctermfg=red guifg=red
 
 Plug 'vim-airline/vim-airline-themes'
 	let g:airline_theme="papercolor" 
