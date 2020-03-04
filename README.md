@@ -66,12 +66,11 @@
 
 # Installation   
 
+## mac
+sudo sh setup_mac.sh
+
 ## ubuntu16.04  
-mv vimconfig ~/.vim  
-
-cd ~/.vim  
-
-sudo sh setup.sh  
+sudo sh setup_ubuntu.sh  
 
 ### Tips:  
 

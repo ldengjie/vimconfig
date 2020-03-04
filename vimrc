@@ -482,7 +482,7 @@ Plug 'ldengjie/vim-absorb'
 "Plug '~/Documents/workspace/vim-absorb'
     let g:absorb_width      = '70%'
     let g:absorb_height     = '90%'
-    let g:absorb_hidelinenr = 0
+    let g:absorb_showlinenr = 1
     "默认不启用
     let g:absorb_open       = 1
 

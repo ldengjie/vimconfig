@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #on ubuntu16.04
+mv ../vimconfig ~/.vim
+cd ~/.vim
 
 #更新源
 sudo cp -rf sys/sources.list /etc/apt/sources.list
