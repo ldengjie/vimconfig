@@ -84,8 +84,6 @@ if has("gui_running")
     colorscheme solarized
 endif
 
-"set fillchars=stl:\ ,stlnc:\
-
 "语法高亮
 syntax on
 "显示行号,由vim-absorb进行控制
