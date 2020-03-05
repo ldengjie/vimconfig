@@ -38,5 +38,6 @@ bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 bindkey '^P' history-search-backward
 bindkey '^N' history-search-forward
-## added by Anaconda3 installer
-#export PATH="/home/sugon/anaconda3/bin:$PATH"
+
+# mvim
+export PATH="$PATH:/Applications/MacVim.app/Contents/bin"

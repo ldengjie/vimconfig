@@ -14,21 +14,20 @@ cu 解开注释
 c\<space\> 加上/解开注释, 智能判断  
 cy 先复制, 再注解(p可以进行黏贴)  
   
--- [c]lose --  
-co 关闭其他buffer  
-cr 关闭右侧buffer  
-cb 关闭当前buffer  
-[count]cb 关闭指定buffer  
-  
 -- [d]elete --  
 dp 删除指定字符之间的字符  
 dl 删除指定行之间的行  
   
 -- [t]abs in buffers window --  
-[count]t 跳转到指定buffer  
-t 跳转到前一个buffer  
-gT 上一个buffer  
-gt 下一个buffer  
+[count]tt 跳转到指定buffer  
+tt 跳转到前一个buffer  
+tn 下一个buffer  
+tp 上一个buffer  
+[count]tc 关闭指定buffer  
+tc 关闭当前buffer  
+to 关闭其他buffer  
+tr 关闭右侧buffer  
+tl 关闭左侧buffer
   
 -- [g]oto --  
 ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]  

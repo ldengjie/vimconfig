@@ -13,21 +13,20 @@
 "c<space> 加上/解开注释, 智能判断
 "cy 先复制, 再注解(p可以进行黏贴)
 
-"-- [c]lose --
-"co 关闭其他buffer
-"cr 关闭右侧buffer
-"cb 关闭当前buffer
-"[count]cb 关闭指定buffer
-
 "-- [d]elete --
 "dp 删除指定字符之间的字符
 "dl 删除指定行之间的行
 
 "-- [t]abs in buffers window --
-"[count]t 跳转到指定buffer
-"t 跳转到前一个buffer
-"gT 上一个buffer
-"gt 下一个buffer
+"[count]tt 跳转到指定buffer
+"tt 跳转到前一个buffer
+"tn 下一个buffer
+"tp 上一个buffer
+"tc 关闭当前buffer
+"[count]tc 关闭指定buffer
+"to 关闭其他buffer
+"tr 关闭右侧buffer
+"tl 关闭左侧buffer
 
 "-- [g]oto --
 "ga 根据指定符号对其，V选中行 -> ga[1|2\*][,|-| ]
@@ -160,12 +159,60 @@ map <silent> w <c-w>
 nmap <silent> gd :normal! md gd `d<CR>
 "格式化json文件
 nmap <silent> gj :%!python -m json.tool<CR>
-"[count] t: 跳转到指定buffer, [count]空时:前一个
-nmap <expr>  t ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
 
-"-- [c]lose --
-"[count] cb: 删除指定buffer, [count]空时:删除当前buffer 
-nmap <expr>  cb ':<c-u>bd '.(v:count==0 ? "" : v:count).'<cr>'
+"-- [t]abs in buffers window --
+"[count] t: 跳转到指定buffer, [count]空时:前一个
+nmap <expr>  tt ':<c-u>b '.(v:count==0 ? "#" : v:count).'<cr>'
+"下一个buffer
+nmap tn :MBEbn<cr>
+"上一个buffer
+nmap tp :MBEbp<cr>
+"[count] tc: 删除指定buffer, [count]空时:删除当前buffer 
+nmap <expr>  tc ':<c-u>MBEbd '.(v:count==0 ? "" : v:count).'<cr>'
+"删除所有其他buffer co
+map <silent> to :call DeleteAllOtherBuffersInWindow()<CR><CR><CR>
+"删除所有右边buffer tr
+map <silent> tr :call DeleteAllRightBuffersInWindow()<CR><CR>
+"删除所有左边buffer tl
+map <silent> tl :call DeleteAllLeftBuffersInWindow()<CR><CR>
+    fun! DeleteAllRightBuffersInWindow()
+        let l:oriBufNr = bufnr("%")
+        while 1
+            let l:lastBufNr = bufnr("%")
+            exe "MBEbn"
+            let l:curBufNr = bufnr("%")
+            if l:curBufNr==l:oriBufNr
+                break
+            endif
+            if l:curBufNr==l:lastBufNr
+                exe "b ".l:oriBufNr
+            endif
+            if l:lastBufNr!=l:oriBufNr
+                exe "MBEbd ".l:lastBufNr
+            endif
+        endwhile
+    endfun
+    fun! DeleteAllLeftBuffersInWindow()
+        let l:oriBufNr = bufnr("%")
+        while 1
+            let l:lastBufNr = bufnr("%")
+            exe "MBEbp"
+            let l:curBufNr = bufnr("%")
+            if l:curBufNr==l:oriBufNr
+                break
+            endif
+            if l:curBufNr==l:lastBufNr
+                exe "b ".l:oriBufNr
+            endif
+            if l:lastBufNr!=l:oriBufNr
+                exe "MBEbd ".l:lastBufNr
+            endif
+        endwhile
+    endfun
+    fun! DeleteAllOtherBuffersInWindow()
+        call DeleteAllRightBuffersInWindow()
+        call DeleteAllLeftBuffersInWindow()
+    endfun
 
 "-- <c-*> --
 "显示当前行数/总行数
@@ -444,12 +491,11 @@ Plug 'fholgado/minibufexpl.vim'
     "自动启动的buffer数量
     let g:miniBufExplBuffersNeeded = 2
     nmap <silent> <leader>m :MBEToggle<CR>
-    "下一个buffer
-    nmap gt :MBEbn<cr>
-    "上一个buffer
-    nmap gT :MBEbp<cr>
     " 当前buffer颜色
     hi MBEVisibleActiveNormal ctermfg=red guifg=red
+    hi MBEVisibleActiveChanged ctermfg=red guifg=red
+    " 有改动的buffer颜色
+    hi MBEChanged ctermfg=green guifg=green
 
 Plug 'vim-airline/vim-airline-themes'
 	let g:airline_theme="papercolor" 
@@ -540,39 +586,5 @@ Plug 'ianva/vim-youdao-translater'
 call plug#end()
 
 "=== user function ===
-
-"删除所有其他buffer co
-map <silent> co :call DeleteAllOtherBuffersInWindow()<CR>
-"删除所有右边buffer cr
-map <silent> cr :call DeleteAllRightBuffersInWindow()<CR>
-    fun! DeleteAllOtherBuffersInWindow()
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        exe "bn"
-        let l:lastBufNr = bufnr("%")
-        while l:lastBufNr != l:curBufNr
-            exe "bn"
-            exe "bdel ".l:lastBufNr
-            let l:lastBufNr = bufnr("%")
-        endwhile
-    endfun
-    fun! DeleteAllRightBuffersInWindow()
-        let l:curWinNr = winnr()
-        if winbufnr(l:curWinNr) == 1
-            return
-        endif
-        let l:curBufNr = bufnr("%")
-        exe "bn"
-        let l:lastBufNr = bufnr("%")
-        while l:lastBufNr > l:curBufNr
-            exe "bn"
-            exe "bdel ".l:lastBufNr
-            let l:lastBufNr = bufnr("%")
-        endwhile
-        exe "b ".l:curBufNr
-    endfun
 
 "=== init ===
